@@ -1,5 +1,7 @@
 import Pet from "./Pet";
+import useBreedList from "./useBreedList";
 import { useState, useEffect } from "react";
+
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = () => {
@@ -7,7 +9,7 @@ const SearchParams = () => {
     const [animal, setAnimal] = useState("")
     const [breed, setBreed] = useState("");
     const [pets, setPets] = useState([])
-    const breeds = [];
+    const [breeds] = useBreedList(animal)
 
     useEffect(() => { requestPets() }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -74,7 +76,6 @@ const SearchParams = () => {
             </form>
 
 
-
             {pets.map((pet) => <Pet
                 name={pet.name}
                 animal={pet.animal}
@@ -82,6 +83,7 @@ const SearchParams = () => {
                 key={pet.id}
             />
             )}
+
 
 
         </div>
