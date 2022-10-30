@@ -1,7 +1,7 @@
 
 export const CHROMATIC_SCALE = ['C', 'C#/D♭', 'D', 'D#/E♭', 'E', 'F', 'F#/G♭', 'G', 'G#/A♭', 'A', 'A#/B♭', 'B'];
 
-const SCALE_INTERVALS = {
+export const SCALE_INTERVALS = {
     major: [2, 2, 1, 2, 2, 2, 1],
     minor: [2, 1, 2, 2, 1, 2, 2],
     harmonicMinor: [2, 1, 2, 2, 1, 3, 1],
@@ -17,7 +17,7 @@ const SCALE_INTERVALS = {
 }
 
 
-function getScale(root, scale) {
+export const getScale = (root, scale) => {
     const isScaleValid = CHROMATIC_SCALE.includes(root.toUpperCase()) || CHROMATIC_SCALE.includes(root.slice(0, 2).toUpperCase()) || CHROMATIC_SCALE.includes(root.slice(3, 5).toUpperCase());
 
     if (!isScaleValid) {
@@ -51,20 +51,10 @@ function getScale(root, scale) {
 
 }
 
-// console.log(getScale('C', 'minor'));
-// console.log(getScale('D', 'minor'));
-// console.log(getScale('E', 'minor'));
-// console.log(getScale('F', 'minor'));
-// console.log(getScale('G', 'minor'));
-// console.log(getScale('A', 'minor'));
-// console.log(getScale('B', 'minor'));
-
-// console.log(getScale('C', 'major'));
-// console.log(getScale('D', 'major'));
 
 
 
-const getChord = {
+export const Chord = {
     major: (root) => {
         const majorScale = getScale(root, 'major');
         return [majorScale[0], majorScale[2], majorScale[4]];
@@ -109,17 +99,50 @@ const getChord = {
 
 }
 
+export const Scale = {
+    major: (root) => {
+        return getScale(root, 'major');
+    },
+    minor: (root) => {
+        return getScale(root, 'minor');
+    },
+    harmonicMinor: (root) => {
+        return getScale(root, 'harmonicMinor');
+    },
+    melodicMinor: (root) => {
+        return getScale(root, 'melodicMinor');
+    }
+    ,
+    diminished: (root) => {
+        return getScale(root, 'diminished');
+    },
+    augmented: (root) => {
+        return getScale(root, 'augmented');
+    }
+    ,
+    majorPentatonic: (root) => {
+        return getScale(root, 'majorPentatonic');
+    }
+    ,
+    minorPentatonic: (root) => {
+        return getScale(root, 'minorPentatonic');
+    }
+    ,
+    blues: (root) => {
+        return getScale(root, 'blues');
+    }
+    ,
+    wholeTone: (root) => {
+        return getScale(root, 'wholeTone');
+    }
+    ,
+    chromatic: (root) => {
+        return getScale(root, 'chromatic');
+    }
 
-// console.log(getChord.major('C#'));
-// console.log(getChord.minor('C'));
-// console.log(getChord.diminished('C'));
-// console.log(getChord.augmented('C'));
-// console.log(getChord.major7('C'));
-// console.log(getChord.minor7('C'));
-// console.log(getChord.dominant7('C'));
-// console.log(getChord.diminished7('C'));
-// console.log(getChord.halfDiminished7('C'));
-// console.log(getChord.minorMajor7('C'));
+
+}
+
 
 
 

@@ -22,7 +22,7 @@ const Fretboard = () => {
 
 
             {tuning.reverse().map((note => {
-                return <GuitarString key={note} note={note} />
+                return <GuitarString key={note} note={note.slice(0, 1)} />
             }))}
 
 
