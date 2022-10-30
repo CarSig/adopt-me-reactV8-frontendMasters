@@ -1,10 +1,30 @@
 import React, { useState } from 'react'
+import useSound from 'use-sound'
+import Notes from '../components/SoundNote'
 
 
 
 
 const Fret = ({ fret, setOneNotePerString, oneNotePerString }) => {
     const [selected, setSelected] = useState(false);
+
+
+    const sound = fret?.fretNote?.length > 1 ? Notes[`${fret.fretNote.slice(0, 2)}`] : Notes[fret.fretNote];
+
+
+    const [playSound] = useSound(sound)
+
+
+    const handleClick = () => {
+        setSelected(!selected);
+
+
+        playSound()
+
+
+        // play audio
+    }
+
 
     const styles = {
 
@@ -20,8 +40,9 @@ const Fret = ({ fret, setOneNotePerString, oneNotePerString }) => {
 
     return (
 
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-        <div onClick={() => { setSelected(!selected) }} style={styles}>{fret?.fretNote?.length < 2 ? fret.fretNote : "*"}</div>
+
+        <div onClick={handleClick} style={styles}>{fret?.fretNote?.length < 2 ? fret.fretNote : "*"}</div>
+
     )
 }
 

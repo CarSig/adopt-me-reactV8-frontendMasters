@@ -1,10 +1,12 @@
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
+import MusicContext from "./MusicContext";
 import Fret from "./components/Fret";
 import Fretboard from "./components/Fretboard";
 import SelectorMain from "./components/Selector/SelectorMain";
+
+
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,20 +23,20 @@ const App = () => {
     <div>
 
       <BrowserRouter>
+        <MusicContext.Provider value={1}>
+          <QueryClientProvider client={queryClient}>
+            <header>
+              <Link to="/"><h1>Guitar</h1></Link>
+            </header>
+            <SelectorMain />
 
-        <QueryClientProvider client={queryClient}>
-          <header>
-            <Link to="/"><h1>Guitar</h1></Link>
-          </header>
-          <SelectorMain />
 
-
-          <Routes>
-            <Route path="/details/:id" element={<Fret />} />
-            <Route path="/" element={<Fretboard />} />
-          </Routes>
-        </QueryClientProvider>
-
+            <Routes>
+              <Route path="/details/:id" element={<Fret />} />
+              <Route path="/" element={<Fretboard />} />
+            </Routes>
+          </QueryClientProvider>
+        </MusicContext.Provider>
       </BrowserRouter>
     </div>
   );

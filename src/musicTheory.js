@@ -17,40 +17,116 @@ export const SCALE_INTERVALS = {
 }
 
 
-export const getScale = (root, scale) => {
-    const isScaleValid = CHROMATIC_SCALE.includes(root.toUpperCase()) || CHROMATIC_SCALE.includes(root.slice(0, 2).toUpperCase()) || CHROMATIC_SCALE.includes(root.slice(3, 5).toUpperCase());
-
-    if (!isScaleValid) {
-
-        return 'Invalid root note';
-    }
-    let currentNote = root.toUpperCase();
-
-    const scaleIntervals = SCALE_INTERVALS[scale];
-    const scaleNotes = [];
-    const iterateNotes = (note, interval) => CHROMATIC_SCALE[(CHROMATIC_SCALE.indexOf(note) + interval) % CHROMATIC_SCALE.length];
-    scaleIntervals.forEach(interval => {
-        // if note of same letter is already in scale, change to accidental
-        const sharp = currentNote.slice(0, 2)
-        const flat = currentNote.slice(3, 5)
-        const accidental = !scaleNotes.includes(currentNote.slice(0, 1)) ? sharp : flat
-
-        // fix for minor scales
-        if (scaleNotes.includes(`${sharp.slice(0, 1)}♭`)) {
-            if (currentNote.length > 1) {
-                scaleNotes.push(`${currentNote.slice(3, 4)}`)
-            } else {
-                scaleNotes.push(`${currentNote}`)
-            }
-        } else {
-            currentNote.length > 1 ? scaleNotes.push(accidental) : scaleNotes.push(currentNote);
-        }
-        currentNote = iterateNotes(currentNote, interval);
-    });
-    return scaleNotes;
-
+export const isNoteAlreadyInScale = (note, prevNote) => {
+    const result = note.slice(0, 1) !== prevNote.slice(0, 1)
+    return result
 }
 
+export const formatNote = (note, prevNote) => {
+    const prevNoteSame = isNoteAlreadyInScale(note, prevNote)
+    const result = prevNoteSame ? note.slice(0, 2) : note.slice(3, 5)
+    return result
+}
+
+
+export const getScale = (note, scaleType) => {
+    const scale = [note.slice(0, 2)];
+    let index = CHROMATIC_SCALE.indexOf(note);
+    let prevNote = ""
+    SCALE_INTERVALS[`${scaleType}`].forEach(interval => {
+        index += interval;
+        if (index > 11) {
+            index -= 12;
+        }
+        const note = formatNote(CHROMATIC_SCALE[index], prevNote)
+        // const note = CHROMATIC_SCALE[index].slice(0, 1) !== prevNote.slice(0, 1) ? (CHROMATIC_SCALE[index].slice(0, 2)) : CHROMATIC_SCALE[index].slice(3, 5);
+        scale.push(note);
+        prevNote = note
+    });
+    return scale;
+}
+
+
+export const getChord = (root, chord) => {
+    const chordNotes = [root];
+    let index = CHROMATIC_SCALE.indexOf(root);
+    let prevNote = ""
+    chord.forEach(interval => {
+        index += interval;
+        if (index > 11) {
+            index -= 12;
+        }
+
+
+        const note = CHROMATIC_SCALE[index].slice(0, 1) !== prevNote.slice(0, 1) ? (CHROMATIC_SCALE[index].slice(0, 2)) : CHROMATIC_SCALE[index].slice(3, 5);
+        chordNotes.push(note);
+        prevNote = note
+    })
+}
+
+
+
+
+console.log(getScale('A', 'major'));
+
+export const Modes = {
+    ionian: [0, 2, 4, 5, 7, 9, 11],
+    dorian: [0, 2, 3, 5, 7, 9, 10],
+    phrygian: [0, 1, 3, 5, 7, 8, 10],
+    lydian: [0, 2, 4, 6, 7, 9, 11],
+    mixolydian: [0, 2, 4, 5, 7, 9, 10],
+    aeolian: [0, 2, 3, 5, 7, 8, 10],
+    locrian: [0, 1, 3, 5, 6, 8, 10]
+}
+
+export const Triads = {
+    major: [0, 4, 7],
+    minor: [0, 3, 7],
+    diminished: [0, 3, 6],
+    augmented: [0, 4, 8]
+}
+
+export const SeventhChords = {
+    major: [0, 4, 7, 11],
+    minor: [0, 3, 7, 10],
+    dominant: [0, 4, 7, 10],
+    diminished: [0, 3, 6, 9],
+    augmented: [0, 4, 8, 10]
+}
+
+// export const getScale = (root, scale) => {
+//     const isScaleValid = CHROMATIC_SCALE.includes(root.toUpperCase()) || CHROMATIC_SCALE.includes(root.slice(0, 2).toUpperCase()) || CHROMATIC_SCALE.includes(root.slice(3, 5).toUpperCase());
+
+//     if (!isScaleValid) {
+
+//         return 'Invalid root note';
+//     }
+//     let currentNote = root.toUpperCase();
+
+//     const scaleIntervals = SCALE_INTERVALS[scale];
+//     const scaleNotes = [];
+//     const iterateNotes = (note, interval) => CHROMATIC_SCALE[(CHROMATIC_SCALE.indexOf(note) + interval) % CHROMATIC_SCALE.length];
+//     scaleIntervals.forEach(interval => {
+//         // if note of same letter is already in scale, change to accidental
+//         const sharp = currentNote.slice(0, 2)
+//         const flat = currentNote.slice(3, 5)
+//         const accidental = !scaleNotes.includes(currentNote.slice(0, 1)) ? sharp : flat
+
+//         // fix for minor scales
+//         if (scaleNotes.includes(`${sharp.slice(0, 1)}♭`)) {
+//             if (currentNote.length > 1) {
+//                 scaleNotes.push(`${currentNote.slice(3, 4)}`)
+//             } else {
+//                 scaleNotes.push(`${currentNote}`)
+//             }
+//         } else {
+//             currentNote.length > 1 ? scaleNotes.push(accidental) : scaleNotes.push(currentNote);
+//         }
+//         currentNote = iterateNotes(currentNote, interval);
+//     });
+//     return scaleNotes;
+
+// }
 
 
 
