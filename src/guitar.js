@@ -27,3 +27,27 @@ function distributeFretsWidth() {
 
 console.log(distributeFretsWidth());
 console.log(distributeFretsWidth().length);
+
+
+const letter = "A";
+// transform letter to next letter in alphabet
+const nextLetter = (letter) => {
+    return String.fromCharCode(letter.charCodeAt(0) + 1);
+
+}
+console.log(nextLetter(letter));
+
+const arr = ["A", "B", "C"];
+
+// if letter is already in array, return next letter
+const chooseAccidental = (arr, letter) => {
+
+    if (arr.includes(letter)) {
+        return nextLetter(letter) + "♭";
+    }
+
+    return letter + "#";
+
+}
+
+console.log(chooseAccidental(arr, ""));

@@ -23,15 +23,15 @@ const Fretboard = () => {
 
             {//TODO: get this from context
             }
-            <p>{chord.name}</p>
-            <p>{chord.notes}</p>
+
 
             {tuning.reverse().map((note => {
                 return <GuitarString key={note} note={note.slice(0, 1)} />
             }))}
 
 
-
+            <p>{chord.name}</p>
+            <p>{chord.notes}</p>
 
         </div>
     )

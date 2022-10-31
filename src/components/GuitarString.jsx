@@ -39,9 +39,7 @@ const GuitarString = ({ note }) => {
             if (noteIndex > 11) {
                 noteIndex = 0;
             }
-            if (chord?.notes.includes(fretNote)) {
-                activeNote = true
-            }
+
             fretNumber++;
             frets.push({ fretWidth, fretNote, fretNumber, activeNote });
             scaleLength -= fretWidth;
