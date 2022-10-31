@@ -1,10 +1,11 @@
-import React from 'react'
-
+import React, { useContext } from 'react'
+import { MusicContext, MusicContextProvider } from '../Context/MusicContext';
 import GuitarString from './GuitarString';
 
 const Fretboard = () => {
     const tuning = ["E", "A", "D", "G", "B", "E2"];
-
+    const { note, chord, scale, } = useContext(MusicContext);
+    console.log(chord)
     return (
         <div style={{
             display: "block",
@@ -20,6 +21,10 @@ const Fretboard = () => {
 
         }}>
 
+            {//TODO: get this from context
+            }
+            <p>{chord.name}</p>
+            <p>{chord.notes}</p>
 
             {tuning.reverse().map((note => {
                 return <GuitarString key={note} note={note.slice(0, 1)} />

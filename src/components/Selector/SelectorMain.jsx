@@ -2,16 +2,18 @@ import React, { useState } from 'react'
 import Notes from '../SoundNote';
 import useSound from 'use-sound';
 import ChordEl from './ChordEl';
-
+import { MusicContext } from '../../Context/MusicContext';
 import { CHROMATIC_SCALE, SCALE_INTERVALS, Chord, Scale, getScale } from "../../musicTheory";
 
 
 
 
 const SelectorMain = () => {
+    const { chord, setChord } = React.useContext(MusicContext);
+
     const [scale, setScale] = useState("");
     const [scaleNote, setScaleNote] = useState("");
-    const [chord, setChord] = useState("");
+    const [chordState, setChordState] = useState("");
     const [chordNote, setChordNote] = useState("");
 
     const [displayedScale, setDisplayedScale] = useState(false);
@@ -26,11 +28,11 @@ const SelectorMain = () => {
     }
 
     const handleChord = () => {
-        const result = Chord[chord](chordNote);
+        const notes = Chord[chordState](chordNote);
+        const name = chordNote + " " + chordState
 
-
-        setDisplayedChord(result);
-
+        setDisplayedChord(notes);
+        setChord({ name, notes })
     }
 
 
@@ -121,10 +123,10 @@ const SelectorMain = () => {
                         id="chord"
                         name="chord"
                         onChange={(e) => {
-                            setChord(e.target.value);
+                            setChordState(e.target.value);
                         }}
                         onBlur={(e) => {
-                            setChord(e.target.value);
+                            setChordState(e.target.value);
                         }}
                     >
                         <option />

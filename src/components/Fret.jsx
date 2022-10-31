@@ -6,7 +6,7 @@ import Notes from '../components/SoundNote'
 
 
 const Fret = ({ fret, setOneNotePerString, oneNotePerString }) => {
-    const [selected, setSelected] = useState(false);
+    const [selected, setSelected] = useState(fret?.activeNote);
 
 
     const sound = fret?.fretNote?.length > 1 ? Notes[`${fret.fretNote.slice(0, 2)}`] : Notes[fret.fretNote];

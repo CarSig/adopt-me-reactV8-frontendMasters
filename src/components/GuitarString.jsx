@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import Fret from './Fret'
 import { CHROMATIC_SCALE } from '../musicTheory';
+import { MusicContext } from '../Context/MusicContext';
 
 const GuitarString = ({ note }) => {
 
 
-
-
+    const { chord, scale } = React.useContext(MusicContext);
+    console.log(chord)
 
     //  get array of notes for string for 21 frets
     const notes = (numberOfFrets) => {
@@ -30,6 +31,7 @@ const GuitarString = ({ note }) => {
         let noteIndex = CHROMATIC_SCALE.indexOf(note) + 1
         let scaleLength = 51.5;
         let fretNumber = 0
+        let activeNote = false
         for (let i = 0; i < totalFrets; i++) {
             let fretWidth = scaleLength / 17.82;
             let fretNote = CHROMATIC_SCALE[noteIndex];
@@ -37,8 +39,11 @@ const GuitarString = ({ note }) => {
             if (noteIndex > 11) {
                 noteIndex = 0;
             }
+            if (chord?.notes.includes(fretNote)) {
+                activeNote = true
+            }
             fretNumber++;
-            frets.push({ fretWidth, fretNote, fretNumber });
+            frets.push({ fretWidth, fretNote, fretNumber, activeNote });
             scaleLength -= fretWidth;
         }
 
