@@ -25,7 +25,7 @@ const Fret = ({ fret, oneNotePerString }) => {
 
     const handleClick = () => {
         setSelected(!selected);
-
+        console.log(fret.fretNote)
 
         playSound()
 
@@ -53,24 +53,44 @@ const Fret = ({ fret, oneNotePerString }) => {
     }
 
     const styles = {
+        fret: {
 
-        width: `${fret.fretWidth * 3}rem`,
-        height: "30px",
-        backgroundColor: `${selected && !oneNotePerString ? `${getColor(fret.fretNote)}` : "white"}`,
-        border: '1px solid black',
-        justifyText: "center",
-        textAlign: "center",
-        cursor: "pointer",
-        fontWeight: `${fret?.fretNote?.length < 2 ? "bold" : "normal"}`,
-        fontSize: `${fret?.fretNote?.length < 2 ? "1rem" : "0.8rem"}`,
-
+            width: `${fret.fretWidth * 3}rem`,
+            height: "30px",
+            backgroundColor: "white",
+            border: '1px solid black',
+            justifyText: "center",
+            textAlign: "center",
+            cursor: "pointer",
+            fontWeight: `${fret?.fretNote?.length < 2 ? "bold" : "normal"}`,
+            fontSize: `${fret?.fretNote?.length < 2 ? "1rem" : "0.8rem"}`,
+        },
+        note: {
+            height: "22px",
+            width: "22px",
+            backgroundColor: `${selected && !oneNotePerString ? `${getColor(fret.fretNote)}` : "white"}`,
+            borderRadius: "50%",
+            // contrast letters with background color
+            color: `${selected && !oneNotePerString ? "white" : "black"}`,
+            border: `${selected && !oneNotePerString ? "1px solid black" : "none"}`,
+            // align text in center of fret
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            // align text in center of fret
+            textAlign: "center",
+        }
     }
 
     return (
 
 
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-        <div onClick={handleClick} style={styles}>{fret?.fretNote?.length < 2 ? fret.fretNote : fret.fretNote}</div>
+        <div onClick={handleClick} style={styles.fret} >
+            <div className="note" style={styles.note}>
+                {fret?.fretNote?.length < 2 ? fret.fretNote : fret.fretNote}</div>
+        </div>
+
 
     )
 }

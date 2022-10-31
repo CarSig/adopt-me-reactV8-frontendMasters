@@ -7,7 +7,7 @@ const GuitarString = ({ note }) => {
 
 
     const { chord, scale } = React.useContext(MusicContext);
-    console.log(chord)
+    console.log(chord.name)
 
     //  get array of notes for string for 21 frets
     const notes = (numberOfFrets) => {
