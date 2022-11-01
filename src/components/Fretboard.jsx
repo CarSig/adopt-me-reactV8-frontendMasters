@@ -5,7 +5,7 @@ import GuitarString from './GuitarString';
 const Fretboard = () => {
     const tuning = ["E", "A", "D", "G", "B", "E2"];
     const { note, chord, scale, } = useContext(MusicContext);
-    console.log(chord)
+
     return (
         <div style={{
             display: "block",
@@ -29,9 +29,6 @@ const Fretboard = () => {
                 return <GuitarString key={note} note={note.slice(0, 1)} />
             }))}
 
-
-            <p>{chord.name}</p>
-            <p>{chord.notes}</p>
 
         </div>
     )
