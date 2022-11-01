@@ -94,39 +94,7 @@ export const SeventhChords = {
     augmented: [0, 4, 8, 10]
 }
 
-// export const getScale = (root, scale) => {
-//     const isScaleValid = CHROMATIC_SCALE.includes(root.toUpperCase()) || CHROMATIC_SCALE.includes(root.slice(0, 2).toUpperCase()) || CHROMATIC_SCALE.includes(root.slice(3, 5).toUpperCase());
 
-//     if (!isScaleValid) {
-
-//         return 'Invalid root note';
-//     }
-//     let currentNote = root.toUpperCase();
-
-//     const scaleIntervals = SCALE_INTERVALS[scale];
-//     const scaleNotes = [];
-//     const iterateNotes = (note, interval) => CHROMATIC_SCALE[(CHROMATIC_SCALE.indexOf(note) + interval) % CHROMATIC_SCALE.length];
-//     scaleIntervals.forEach(interval => {
-//         // if note of same letter is already in scale, change to accidental
-//         const sharp = currentNote.slice(0, 2)
-//         const flat = currentNote.slice(3, 5)
-//         const accidental = !scaleNotes.includes(currentNote.slice(0, 1)) ? sharp : flat
-
-//         // fix for minor scales
-//         if (scaleNotes.includes(`${sharp.slice(0, 1)}♭`)) {
-//             if (currentNote.length > 1) {
-//                 scaleNotes.push(`${currentNote.slice(3, 4)}`)
-//             } else {
-//                 scaleNotes.push(`${currentNote}`)
-//             }
-//         } else {
-//             currentNote.length > 1 ? scaleNotes.push(accidental) : scaleNotes.push(currentNote);
-//         }
-//         currentNote = iterateNotes(currentNote, interval);
-//     });
-//     return scaleNotes;
-
-// }
 
 
 
@@ -221,8 +189,22 @@ export const Scale = {
 
 
 
+// input any number of notes and get the name of the chord
+export const getChordName = (...notes) => {
+    const root = notes[0];
+    const intervals = notes.map(note => {
+        return CHROMATIC_SCALE.indexOf(note) - CHROMATIC_SCALE.indexOf(root);
+    });
+    const chord = CHORDS.find(chord => {
+        return chord.intervals.every(interval => {
+            return intervals.includes(interval);
+        });
+    });
+    return chord ? chord.name : 'Unknown';
+}
 
 
+console.log(getChordName('C', 'E', 'G'));
 
 
 
