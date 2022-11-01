@@ -7,7 +7,7 @@ const SelectorCombo = ({ noteSetter, typeSetter, type, typeInput, handleClick, d
         <div>
             <NoteSelector noteSetter={noteSetter} />
             <ChordScaleSelector typeSetter={typeSetter} type={type} typeInput={typeInput} />
-            <button onClick={handleClick}>Scale</button>
+            <button onClick={handleClick}>{type.charAt(0).toUpperCase() + type.slice(1)}</button>
             {displayed}
         </div>
     )

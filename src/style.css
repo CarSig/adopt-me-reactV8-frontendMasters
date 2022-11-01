@@ -34,3 +34,33 @@ body {
   margin: 10px;
   width: 80%;
 }
+
+.note-selector select {
+  width: 80px;
+  height: 50px;
+  border-radius: 20%;
+  border: 1px solid #333;
+  cursor: pointer;
+  background-color: #444;
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.chord-scale-selector select {
+  width: 180px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  cursor: pointer;
+  background-color: #444;
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.chord-scale-selector option,
+.note-selector option {
+  background-color: #444;
+  color: white;
+}

@@ -7,7 +7,7 @@ const NoteSelector = ({ noteSetter }) => {
     ))
 
     return (
-        <div className=''>
+        <div className='note-selector'>
             <label htmlFor="note">
                 Note
                 <select
