@@ -6,7 +6,7 @@ import COLOR_NOTE from '../constants/COLORS';
 
 import { MusicContext } from '../Context/MusicContext'
 
-const Fret = ({ fret, oneNotePerString }) => {
+const Fret = ({ fret, oneNotePerString, octave }) => {
     const { note, chord, scale, } = useContext(MusicContext);
     // const isIn = chord?.includes(fret.fretNote)
     const activeNote = chord.notes.includes(fret.fretNote)
@@ -72,7 +72,9 @@ const Fret = ({ fret, oneNotePerString }) => {
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
         <div onClick={handleClick} style={styles.fret} >
             <div className="note" style={styles.note}>
-                {fret?.fretNote?.length < 2 ? fret.fretNote : fret.fretNote}</div>
+                {fret?.fretNote?.length < 2 ? fret.fretNote : fret.fretNote}
+                <span style={{ fontSize: 11 }}>{octave}</span>
+            </div>
         </div>
 
 

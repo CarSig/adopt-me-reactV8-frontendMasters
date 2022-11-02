@@ -33,7 +33,7 @@ export const getScale = (note, scaleType) => {
     const scale = [note.slice(0, 2)];
     let index = CHROMATIC_SCALE.indexOf(note);
     let prevNote = ""
-    SCALE_INTERVALS[`${scaleType}`].forEach(interval => {
+    SCALE_INTERVALS[`${scaleType}`]?.forEach(interval => {
         index += interval;
         if (index > 11) {
             index -= 12;
