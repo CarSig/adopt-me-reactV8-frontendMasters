@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useContext, useEffect } from 'react'
 import useSound from 'use-sound'
-import Notes from '../components/SoundNote'
-
+import Notes from '../components/SoundNote';
+import COLOR_NOTE from '../constants/COLORS';
 
 import { MusicContext } from '../Context/MusicContext'
 
@@ -34,23 +34,7 @@ const Fret = ({ fret, oneNotePerString }) => {
     }
 
     // get color for each note in chromatic scale
-    const getColor = (note) => {
-        const colors = {
-            "C": "red",
-            "C#": "orange",
-            "D": "yellow",
-            "D#": "green",
-            "E": "blue",
-            "F": "indigo",
-            "F#": "violet",
-            "G": "purple",
-            "G#": "pink",
-            "A": "fuchsia",
-            "A#": "grey",
-            "B": "aqua",
-        }
-        return colors[note]
-    }
+
 
     const styles = {
         fret: {
@@ -66,9 +50,9 @@ const Fret = ({ fret, oneNotePerString }) => {
             fontSize: `${fret?.fretNote?.length < 2 ? "1rem" : "0.8rem"}`,
         },
         note: {
-            height: "22px",
-            width: "22px",
-            backgroundColor: `${selected && !oneNotePerString ? `${getColor(fret.fretNote)}` : "white"}`,
+            height: "24px",
+            width: "24px",
+            backgroundColor: `${selected && !oneNotePerString ? COLOR_NOTE[`${fret.fretNote}`] : "white"}`,
             borderRadius: "50%",
             // contrast letters with background color
             color: `${selected && !oneNotePerString ? "white" : "black"}`,

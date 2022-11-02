@@ -6,6 +6,7 @@ const useChord = () => {
     const [chordNote, setChordNote] = useState("");
     const [chordState, setChordState] = useState("");
 
+
     const [displayedChord, setDisplayedChord] = useState(false);
 
     const handleChord = () => {

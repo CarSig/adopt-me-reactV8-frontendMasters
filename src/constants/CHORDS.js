@@ -1124,4 +1124,14 @@ const CHORDS = {
     }
 }
 
+
+
+
+const getChord = (root, chordName) => {
+    const chord = chords[root][chordName];
+    return chord.notes.map(note => note + chord.intervals.map(interval => root + interval));
+}
+
+
+
 export default CHORDS

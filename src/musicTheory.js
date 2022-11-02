@@ -47,27 +47,24 @@ export const getScale = (note, scaleType) => {
 }
 
 
-export const getChord = (root, chord) => {
-    const chordNotes = [root];
-    let index = CHROMATIC_SCALE.indexOf(root);
-    let prevNote = ""
-    chord.forEach(interval => {
-        index += interval;
-        if (index > 11) {
-            index -= 12;
-        }
+// export const getChord = (root, chord) => {
+//     const chordNotes = [root];
+//     let index = CHROMATIC_SCALE.indexOf(root);
+//     let prevNote = ""
+//     chord.forEach(interval => {
+//         index += interval;
+//         if (index > 11) {
+//             index -= 12;
+//         }
 
 
-        const note = CHROMATIC_SCALE[index].slice(0, 1) !== prevNote.slice(0, 1) ? (CHROMATIC_SCALE[index].slice(0, 2)) : CHROMATIC_SCALE[index].slice(3, 5);
-        chordNotes.push(note);
-        prevNote = note
-    })
-}
+//         const note = CHROMATIC_SCALE[index].slice(0, 1) !== prevNote.slice(0, 1) ? (CHROMATIC_SCALE[index].slice(0, 2)) : CHROMATIC_SCALE[index].slice(3, 5);
+//         chordNotes.push(note);
+//         prevNote = note
+//     })
+// }
 
 
-
-
-console.log(getScale('A', 'major'));
 
 export const Modes = {
     ionian: [0, 2, 4, 5, 7, 9, 11],
@@ -190,21 +187,21 @@ export const Scale = {
 
 
 // input any number of notes and get the name of the chord
-export const getChordName = (...notes) => {
-    const root = notes[0];
-    const intervals = notes.map(note => {
-        return CHROMATIC_SCALE.indexOf(note) - CHROMATIC_SCALE.indexOf(root);
-    });
-    const chord = CHORDS.find(chord => {
-        return chord.intervals.every(interval => {
-            return intervals.includes(interval);
-        });
-    });
-    return chord ? chord.name : 'Unknown';
-}
+// export const getChordName = (...notes) => {
+//     const root = notes[0];
+//     const intervals = notes.map(note => {
+//         return CHROMATIC_SCALE.indexOf(note) - CHROMATIC_SCALE.indexOf(root);
+//     });
+//     const chord = CHORDS.find(chord => {
+//         return chord.intervals.every(interval => {
+//             return intervals.includes(interval);
+//         });
+//     });
+//     return chord ? chord.name : 'Unknown';
+// }
 
 
-console.log(getChordName('C', 'E', 'G'));
+// console.log(getChordName('C', 'E', 'G'));
 
 
 
