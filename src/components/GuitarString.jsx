@@ -7,7 +7,7 @@ const GuitarString = ({ note, thickness }) => {
     const startOctave = ["E", "A", "D"].some(el => el === note) ? 0 : ["G", "B"].some(el => el === note) ? 1 : 2;
 
     const octave = useRef(startOctave);
-    let fretNumber = useRef(0);
+
 
     return (
         <div style={{
@@ -27,9 +27,9 @@ const GuitarString = ({ note, thickness }) => {
 
             {getFrets(note).map((fret, index) => {
                 fret.fretNote === "E" && octave.current++;
-                fretNumber.current++;
 
-                return <Fret key={index} fret={fret} emptyStringNote={note} octave={octave.current} fretNumber={fretNumber.current} />
+
+                return <Fret key={index} fret={fret} emptyStringNote={note} octave={octave.current} thickness={thickness} />
             }
 
             )}

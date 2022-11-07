@@ -2,7 +2,7 @@ import { createContext, useState, useReducer } from "react";
 import AppReducer from "./AppReducer";
 
 const initialState = {
-    note: "C",
+    note: "A",
     chord: {
         name: "C7diminished",
         notes: ["C", "Eb", "Gb", "Bb"]

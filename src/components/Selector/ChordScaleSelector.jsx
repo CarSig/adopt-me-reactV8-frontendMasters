@@ -2,10 +2,10 @@ import React from 'react'
 
 const ChordScaleSelector = ({ type, typeSetter, typeInput }) => {
     return (
-        <div className='chord-scale-selector'>
+        <div className={`chord-scale-selector ${type}`} >
             <label htmlFor={type}>
                 {type.charAt(0).toUpperCase() + type.slice(1)}
-                <select
+                <select className={type}
                     id={type}
                     name={type}
                     onChange={(e) => {
@@ -18,8 +18,9 @@ const ChordScaleSelector = ({ type, typeSetter, typeInput }) => {
                     <option />
 
                     {Object.keys(typeInput).map((option) => (
-                        <option key={option} value={option}>
+                        <option key={option} className={type} value={option}>
                             {option}
+
                         </option>
                     ))}
                 </select>

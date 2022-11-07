@@ -6,16 +6,20 @@ import COLOR_NOTE from '../constants/COLORS';
 
 import { MusicContext } from '../Context/MusicContext'
 
-const Fret = ({ fret, oneNotePerString, octave, fretNumber }) => {
-    const { note, chord, scale, } = useContext(MusicContext);
+const Fret = ({ fret, oneNotePerString, octave, thickness }) => {
+    const { note, chord, scale } = useContext(MusicContext);
     // const isIn = chord?.includes(fret.fretNote)
-    const activeNote = chord.notes.includes(fret.fretNote)
+    const shape = { "1": 2, "2": 2, "3": 4, "4": 5, "5": null, "6": null }
+    // const activeNote = chord.notes.includes(fret.fretNote)
+
+    const activeNote = shape[thickness] === fret.fretNumber
+
     const [selected, setSelected] = useState(activeNote);
 
 
-    useEffect(() => {
-        setSelected(activeNote)
-    }, [chord])
+    // useEffect(() => {
+    //     setSelected(activeNote)
+    // }, [chord])
 
     const sound = fret?.fretNote?.length > 1 ? Notes[`${fret.fretNote.slice(0, 2)}`] : Notes[fret.fretNote];
 
@@ -52,7 +56,7 @@ const Fret = ({ fret, oneNotePerString, octave, fretNumber }) => {
         note: {
             height: "24px",
             width: "24px",
-            backgroundColor: `${selected && !oneNotePerString ? COLOR_NOTE[`${fret.fretNote}`] : "white"}`,
+            backgroundColor: `${selected ? COLOR_NOTE[`${fret.fretNote}`] : "white"}`,
             borderRadius: "50%",
             // contrast letters with background color
             color: `${selected && !oneNotePerString ? "white" : "black"}`,
@@ -74,7 +78,7 @@ const Fret = ({ fret, oneNotePerString, octave, fretNumber }) => {
             <div className="note" style={styles.note}>
                 {fret?.fretNote?.length < 2 ? fret.fretNote : fret.fretNote}
                 <span style={{ fontSize: 11 }}>{octave}</span>
-                <span style={{ fontSize: 11 }}>{fretNumber}</span>
+                <span style={{ fontSize: 11 }}>{fret.fretNumber}</span>
 
             </div>
         </div>

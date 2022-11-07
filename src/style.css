@@ -53,10 +53,20 @@ body {
   border-radius: 10px;
   border: 1px solid #333;
   cursor: pointer;
-  background-color: #444;
+  /* background-color: #444; */
   text-align: center;
   color: white;
   font-size: 1.2rem;
+}
+
+.scale select {
+  background-color: rgb(124, 192, 141);
+}
+.chord select {
+  background-color: rgb(102, 87, 190);
+}
+.shape select {
+  background-color: rgba(110, 89, 49, 0.904);
 }
 
 .chord-scale-selector option,

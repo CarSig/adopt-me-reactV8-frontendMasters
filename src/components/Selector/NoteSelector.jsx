@@ -1,13 +1,13 @@
 import React from 'react'
 import { CHROMATIC_SCALE } from "../../musicTheory";
 
-const NoteSelector = ({ noteSetter }) => {
+const NoteSelector = ({ noteSetter, type }) => {
     const noteSelectorOptions = CHROMATIC_SCALE.map((option) => (
         <option key={option} value={option}>{option}</option>
     ))
 
     return (
-        <div className='note-selector'>
+        <div className={`note-selector ${type}`}>
             <label htmlFor="note">
                 Note
                 <select
