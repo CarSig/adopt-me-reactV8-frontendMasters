@@ -16,33 +16,18 @@ export const SCALE_INTERVALS = {
 
 }
 
-const CAGEDshapes = {
+
+
+
+export const CAGEDshapes = {
     C: { 6: null, 5: 3, 4: 2, 3: 0, 2: 1, 1: 0 },
     A: { 6: 0, 5: 2, 4: 2, 3: 2, 2: 0, 1: 0 },
     G: { 6: 3, 5: 2, 4: 0, 3: 0, 2: 0, 1: 3 },
     E: { 6: 0, 5: 1, 4: 0, 3: 2, 2: 2, 1: 0 },
-    D: { 6: 0, 5: 2, 4: 3, 3: 2, 2: 0, 1: 0 },
-}
-
-const getCAGEDChord = (shape, root) => {
-    const fretDelays = { C: 0, "C#": 1, "D♭": 1, D: 2, "D#": 3, "E♭": 3, E: 4, F: 5, "F#": 6, "G♭": 6, G: 7, "G#": 8, "A♭": 8, A: 9, "A#": 10, "B♭": 10, B: 11 };
-    const chord = { 6: null, 5: null, 4: null, 3: null, 2: null, 1: null };
-    const fretDelay = fretDelays[root];
-    console.log(CAGEDshapes[root]);
-    for (let guitarString in CAGEDshapes[root]) {
-        if (CAGEDshapes[root][guitarString] !== null) {
-            chord[guitarString] = CAGEDshapes[root][guitarString] + fretDelay;
-        }
-    }
-
-    return CAGEDshapes[root]
+    D: { 6: null, 5: null, 4: 3, 3: 2, 2: 0, 1: 0 },
 }
 
 
-
-
-
-console.log(getCAGEDChord('A', 'G'));
 
 
 
