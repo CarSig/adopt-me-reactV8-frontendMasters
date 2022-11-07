@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ChordScaleSelector = ({ type, typeSetter, typeInput }) => {
+const MultiSelector = ({ type, typeSetter, typeInput }) => {
     return (
         <div className={`chord-scale-selector ${type}`} >
             <label htmlFor={type}>
@@ -29,4 +29,4 @@ const ChordScaleSelector = ({ type, typeSetter, typeInput }) => {
     )
 }
 
-export default ChordScaleSelector
+export default MultiSelector
