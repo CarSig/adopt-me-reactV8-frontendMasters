@@ -6,7 +6,7 @@ import COLOR_NOTE from '../constants/COLORS';
 
 import { MusicContext } from '../Context/MusicContext'
 
-const Fret = ({ fret, oneNotePerString, octave }) => {
+const Fret = ({ fret, oneNotePerString, octave, fretNumber }) => {
     const { note, chord, scale, } = useContext(MusicContext);
     // const isIn = chord?.includes(fret.fretNote)
     const activeNote = chord.notes.includes(fret.fretNote)
@@ -74,6 +74,8 @@ const Fret = ({ fret, oneNotePerString, octave }) => {
             <div className="note" style={styles.note}>
                 {fret?.fretNote?.length < 2 ? fret.fretNote : fret.fretNote}
                 <span style={{ fontSize: 11 }}>{octave}</span>
+                <span style={{ fontSize: 11 }}>{fretNumber}</span>
+
             </div>
         </div>
 
