@@ -15,6 +15,11 @@ const AppReducer = (state, action) => {
                 ...state,
                 scale: action.payload
             };
+        case "SET_SHAPE":
+            return {
+                ...state,
+                shape: action.payload
+            };
 
         default:
             return state;

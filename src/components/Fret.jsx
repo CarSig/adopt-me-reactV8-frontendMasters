@@ -46,7 +46,9 @@ const Fret = ({ fret, oneNotePerString, octave, thickness }) => {
             width: `${fret.fretWidth * 3.4}rem`,
             height: "40px",
             // backgroundColor: "white",
-            border: '1px solid black',
+            border: '1px  solid black',
+            borderLeft: 'none',
+            borderRight: `4px solid #ddd`,
             justifyText: "center",
             textAlign: "center",
             cursor: "pointer",
@@ -56,11 +58,12 @@ const Fret = ({ fret, oneNotePerString, octave, thickness }) => {
         note: {
             height: "26px",
             width: "27px",
-            backgroundColor: `${selected && COLOR_NOTE[`${fret.fretNote}`]}`,
+            backgroundColor: `${selected && COLOR_NOTE[`${fret.fretNote}`]
+                }`,
             borderRadius: "50%",
             // contrast letters with background color
-            color: `${selected && !oneNotePerString ? "white" : "black"}`,
-            border: `${selected && !oneNotePerString ? "1px solid black" : "none"}`,
+            color: `${selected && !oneNotePerString ? "white" : "black"} `,
+            border: `${selected && !oneNotePerString ? "1px solid black" : "none"} `,
             // align text in center of fret
             display: "flex",
             justifyContent: "center",
