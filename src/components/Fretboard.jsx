@@ -8,19 +8,7 @@ const Fretboard = () => {
     const { note, chord, scale, shape, setShape } = useContext(MusicContext);
 
     return (
-        <div style={{
-            display: "block",
-            marginLeft: "50px",
-            marginRight: "auto",
-            width: "100%",
-            height: "100%",
-            backgroundColor: "grey",
-            border: "1px solid black",
-            borderRadius: "5px",
-            padding: "10px",
-            boxSizing: "border-box"
-
-        }}>
+        <div className='fretboard'>
 
             {//TODO: get this from context
 
@@ -33,7 +21,7 @@ const Fretboard = () => {
             }))}
 
             <h1>{JSON.stringify(shape)}</h1>
-        </div>
+        </div >
     )
 }
 
