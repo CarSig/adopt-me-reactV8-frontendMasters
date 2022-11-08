@@ -112,9 +112,29 @@ button {
   margin-right: auto;
   width: 100%;
   height: 100%;
-  background-color: #333;
+
+  /* create wood texture */
+
+  /* rootate background image*/
+
   border: 1px solid #333;
   border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.fret {
+  background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+  background-color: rgb(194, 131, 59);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  border: 2px solid #333;
+
   padding: 10px;
   box-sizing: border-box;
 }

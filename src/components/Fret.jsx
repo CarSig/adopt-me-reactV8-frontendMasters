@@ -43,9 +43,9 @@ const Fret = ({ fret, oneNotePerString, octave, thickness }) => {
     const styles = {
         fret: {
 
-            width: `${fret.fretWidth * 3}rem`,
-            height: "30px",
-            backgroundColor: "white",
+            width: `${fret.fretWidth * 3.4}rem`,
+            height: "40px",
+            // backgroundColor: "white",
             border: '1px solid black',
             justifyText: "center",
             textAlign: "center",
@@ -54,9 +54,9 @@ const Fret = ({ fret, oneNotePerString, octave, thickness }) => {
             fontSize: `${fret?.fretNote?.length < 2 ? "1rem" : "0.8rem"}`,
         },
         note: {
-            height: "24px",
-            width: "24px",
-            backgroundColor: `${selected ? COLOR_NOTE[`${fret.fretNote}`] : "white"}`,
+            height: "26px",
+            width: "27px",
+            backgroundColor: `${selected && COLOR_NOTE[`${fret.fretNote}`]}`,
             borderRadius: "50%",
             // contrast letters with background color
             color: `${selected && !oneNotePerString ? "white" : "black"}`,
@@ -74,11 +74,10 @@ const Fret = ({ fret, oneNotePerString, octave, thickness }) => {
 
 
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-        <div onClick={handleClick} style={styles.fret} >
+        <div onClick={handleClick} style={styles.fret} className="fret">
             <div className="note" style={styles.note}>
                 {fret?.fretNote?.length < 2 ? fret.fretNote : fret.fretNote}
-                <span style={{ fontSize: 11 }}>{octave}</span>
-                <span style={{ fontSize: 11 }}>{fret.fretNumber}</span>
+
 
             </div>
         </div>

@@ -9,6 +9,7 @@ const initialState = {
     },
     scale: "CHrmonicminor",
     shape: { "1": 2, "2": 3, "3": 1, "4": 2, "5": null, "6": null },
+    root: "C",
 }
 
 export const MusicContext = createContext(initialState);
@@ -43,6 +44,13 @@ export const MusicContextProvider = ({ children }) => {
             payload: shape
         })
     }
+    function setRoot(root) {
+        dispatch({
+            type: "SET_ROOT",
+            payload: root
+        })
+    }
+
 
     return (
         <MusicContext.Provider
@@ -54,7 +62,9 @@ export const MusicContextProvider = ({ children }) => {
                 scale: state.scale,
                 setScale,
                 shape: state.shape,
-                setShape
+                setShape,
+                root: state.root,
+                setRoot
             }}>{children}</MusicContext.Provider>
     )
 }

@@ -9,7 +9,7 @@ const Fretboard = () => {
 
     return (
         <div className='fretboard'>
-
+            <h1>{JSON.stringify(shape)}</h1>
             {//TODO: get this from context
 
             }
@@ -20,7 +20,7 @@ const Fretboard = () => {
                 return <GuitarString key={note} note={note} thickness={JSON.stringify(thickness.current)} />
             }))}
 
-            <h1>{JSON.stringify(shape)}</h1>
+
         </div >
     )
 }
