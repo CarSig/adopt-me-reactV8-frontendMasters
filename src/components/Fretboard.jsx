@@ -5,7 +5,7 @@ import GuitarString from './GuitarString';
 const Fretboard = () => {
     const tuning = ["E", "A", "D", "G", "B", "e"];
     const thickness = useRef(0);
-    const { note, chord, scale, } = useContext(MusicContext);
+    const { note, chord, scale, shape, setShape } = useContext(MusicContext);
 
     return (
         <div style={{
@@ -23,6 +23,7 @@ const Fretboard = () => {
         }}>
 
             {//TODO: get this from context
+
             }
 
 
@@ -31,7 +32,7 @@ const Fretboard = () => {
                 return <GuitarString key={note} note={note} thickness={JSON.stringify(thickness.current)} />
             }))}
 
-
+            <h1>{JSON.stringify(shape)}</h1>
         </div>
     )
 }

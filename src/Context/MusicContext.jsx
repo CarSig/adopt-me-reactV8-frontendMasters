@@ -8,6 +8,7 @@ const initialState = {
         notes: ["C", "Eb", "Gb", "Bb"]
     },
     scale: "CHrmonicminor",
+    shape: { "1": 2, "2": 3, "3": 1, "4": 2, "5": null, "6": null },
 }
 
 export const MusicContext = createContext(initialState);
@@ -36,6 +37,12 @@ export const MusicContextProvider = ({ children }) => {
         })
     }
 
+    function setShape(shape) {
+        dispatch({
+            type: "SET_SHAPE",
+            payload: shape
+        })
+    }
 
     return (
         <MusicContext.Provider
@@ -46,6 +53,8 @@ export const MusicContextProvider = ({ children }) => {
                 setNote,
                 scale: state.scale,
                 setScale,
+                shape: state.shape,
+                setShape
             }}>{children}</MusicContext.Provider>
     )
 }
