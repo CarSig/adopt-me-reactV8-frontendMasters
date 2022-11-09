@@ -3,15 +3,17 @@ import { Chord } from "../musicTheory";
 import { MusicContext } from "../Context/MusicContext";
 
 const useChord = () => {
-    const { setChord, chord } = useContext(MusicContext);
+    const { setChord, chord, note } = useContext(MusicContext);
     const [chordNote, setChordNote] = useState("");
     const [chordState, setChordState] = useState("");
     const [displayedChord, setDisplayedChord] = useState(false);
 
     const handleChord = () => {
-        const notes = Chord[chordState](chordNote);
+        console.log("chordNote", chordNote || note);
+        const chordType = chord || "major"
+        const chordRoot = chordNote || "C";
+        const notes = Chord[chordType](chordRoot)
         const name = chordNote + " " + chordState;
-
         setDisplayedChord(notes);
         setChord({ name, notes });
     };

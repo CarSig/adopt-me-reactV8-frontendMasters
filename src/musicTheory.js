@@ -174,6 +174,7 @@ export const Chord = {
 
 }
 
+
 export const Scale = {
     major: (root) => {
         return getScale(root, 'major');

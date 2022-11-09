@@ -9,12 +9,12 @@ import NoteSelector from './NoteSelector'
 import MultiSelector from './MultiSelector'
 
 const SelectorMain = () => {
-    const [selectedNotes, setSelectedNotes] = useState([]);
+
     const { setChordNote, setChordState, displayedChord, handleChord } = useChord();
     const { setScale, setScaleNote, displayedScale, handleScale } = useScale();
-    const { setShape, root, setRoot, displayedShape, setDisplayedShape, getCAGEDshape, handleShape } = useCAGEDshape();
-    const [selector, setSelector] = useState("shape");
-    const { shape } = useContext(MusicContext);
+    const { setShape, setRoot, displayedShape, handleShape } = useCAGEDshape();
+    const { selector, setSelector } = useContext(MusicContext)
+
 
 
     const getButton = (selected) => {

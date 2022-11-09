@@ -1,4 +1,5 @@
 const fetchFactory = async ({ queryKey }) => {
+    // const {link1,link2,link3} = queryKey[1];
     const link = queryKey[1];
     if (!link) return [];
 

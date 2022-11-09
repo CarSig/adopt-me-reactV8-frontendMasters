@@ -1,21 +1,12 @@
 import { createContext, useReducer } from "react";
-
-
-const AppReducer = (state, action) => {
-    return {
-        ...state,
-        [action.type]: action.payload
-    }
-
-}
-
+import AppReducer from "./AppReducer";
 
 const initialState = {
     note: "",
     chord: "",
     scale: "",
     shape: "",
-    selection: "",
+    selector: "shape",
 }
 
 export const MusicContext = createContext(initialState);
@@ -57,29 +48,28 @@ export const MusicContextProvider = ({ children }) => {
         })
     }
 
-    function setSelection(selection) {
+    function setSelector(selector) {
         dispatch({
-            type: "SET_Selection",
-            payload: selection
+            type: "selector",
+            payload: selector
         })
     }
 
     return (
-        <MusicContext.Provider
-            value={{
-                chord: state.chord,
-                setChord,
-                note: state.note,
-                setNote,
-                scale: state.scale,
-                setScale,
-                shape: state.shape,
-                setShape,
-                root: state.root,
-                setRoot,
-                selection: state.selection,
-                setSelection
-            }}>{children}</MusicContext.Provider>
+        <MusicContext.Provider value={{
+            chord: state.chord,
+            setChord,
+            note: state.note,
+            setNote,
+            scale: state.scale,
+            setScale,
+            shape: state.shape,
+            setShape,
+            root: state.root,
+            setRoot,
+            selector: state.selector,
+            setSelector
+        }}>{children}</MusicContext.Provider>
     )
 }
 

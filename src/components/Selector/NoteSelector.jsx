@@ -3,7 +3,7 @@ import { CHROMATIC_SCALE } from "../../musicTheory";
 import { MusicContext } from '../../Context/MusicContext';
 
 const NoteSelector = ({ noteSetter, type }) => {
-    const { note, chord, scale, shape, setShape, setNote } = useContext(MusicContext);
+    const { setNote } = useContext(MusicContext);
     const changeHandler = (e) => {
         noteSetter(e);
         setNote(e);
@@ -20,10 +20,11 @@ const NoteSelector = ({ noteSetter, type }) => {
 
             <label htmlFor="note">
                 Note
-                <select
+                <select defaultValue="C"
                     id="note" name="note"
                     onChange={(e) => { changeHandler(e.target.value) }}
                     onBlur={(e) => { changeHandler(e.target.value) }} >
+                    <option disabled />
                     {noteSelectorOptions}
                 </select>
             </label>

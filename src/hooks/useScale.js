@@ -5,7 +5,7 @@ import { MusicContext } from "../Context/MusicContext";
 const useScale = () => {
     // const [scale, setScale] = useState("");
     const [scaleNote, setScaleNote] = useState("");
-    const { note, setScale, scale } = useContext(MusicContext);
+    const { setScale, scale } = useContext(MusicContext);
 
     const [displayedScale, setDisplayedScale] = useState(false);
 

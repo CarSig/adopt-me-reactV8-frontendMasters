@@ -11,6 +11,7 @@ const Fretboard = () => {
         <div className='fretboard'>
             <h1>{JSON.stringify(shape)}</h1>
             <h1>{JSON.stringify(scale)}</h1>
+            <h1>{JSON.stringify(chord)}</h1>
 
 
 
