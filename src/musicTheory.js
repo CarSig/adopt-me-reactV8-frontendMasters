@@ -16,9 +16,6 @@ export const SCALE_INTERVALS = {
 
 }
 
-
-
-
 export const CAGEDshapes = {
     C: { 6: null, 5: 3, 4: 2, 3: 0, 2: 1, 1: 0 },
     A: { 6: 0, 5: 2, 4: 2, 3: 2, 2: 0, 1: 0 },
@@ -61,7 +58,7 @@ export const getScale = (note, scaleType) => {
 }
 
 
-console.log(CAGEDshapes["E"])
+
 
 export const getCAGEDshape = (root, shape) => {
     const fretDelays = { C: 0, "C#": 1, "D♭": 1, D: 2, "D#": 3, "E♭": 3, E: 4, F: 5, "F#": 6, "G♭": 6, G: 7, "G#": 8, "A♭": 8, A: 9, "A#": 10, "B♭": 10, B: 11 };
@@ -82,8 +79,7 @@ export const getCAGEDshape = (root, shape) => {
 
 }
 
-getCAGEDshape("G", "A")
-
+getCAGEDshape("A", "E")
 
 // export const getChord = (root, chord) => {
 //     const chordNotes = [root];

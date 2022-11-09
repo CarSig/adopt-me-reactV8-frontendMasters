@@ -9,7 +9,7 @@ const initialState = {
     },
     scale: "CHrmonicminor",
     shape: { "1": 2, "2": 3, "3": 1, "4": 2, "5": null, "6": null },
-    root: "C",
+
 }
 
 export const MusicContext = createContext(initialState);

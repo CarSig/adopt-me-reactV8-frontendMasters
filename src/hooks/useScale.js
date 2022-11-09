@@ -11,10 +11,16 @@ const useScale = () => {
 
     const handleScale = () => {
 
-        const result = getScale(scaleNote, scale);
+        const notes = getScale(scaleNote, scale);
 
-        setDisplayedScale(result);
-        setScale(result)
+        const name = scaleNote + " " + scale;
+
+
+
+
+
+        setDisplayedScale(notes);
+        setScale({ name, notes })
 
     }
 

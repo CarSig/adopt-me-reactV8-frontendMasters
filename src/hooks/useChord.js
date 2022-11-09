@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Chord } from "../musicTheory";
+import { MusicContext } from "../Context/MusicContext";
 
 const useChord = () => {
-    const [chord, setChord] = useState("");
+    const { setChord, chord } = useContext(MusicContext);
     const [chordNote, setChordNote] = useState("");
     const [chordState, setChordState] = useState("");
     const [displayedChord, setDisplayedChord] = useState(false);

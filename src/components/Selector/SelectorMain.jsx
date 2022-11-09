@@ -33,8 +33,8 @@ const SelectorMain = () => {
             {getButton("shape")}
 
 
-            {selector === "chord" && <SelectorCombo noteSetter={setScaleNote} typeSetter={setScale} type="scale" typeInput={Scale} handleClick={handleScale} displayed={displayedScale} />}
-            {selector === "scale" && <SelectorCombo noteSetter={setChordNote} typeSetter={setChordState} type="chord" typeInput={Chord} handleClick={handleChord} displayed={displayedChord} />}
+            {selector === "scale" && <SelectorCombo noteSetter={setScaleNote} typeSetter={setScale} type="scale" typeInput={Scale} handleClick={handleScale} displayed={displayedScale} />}
+            {selector === "chord" && <SelectorCombo noteSetter={setChordNote} typeSetter={setChordState} type="chord" typeInput={Chord} handleClick={handleChord} displayed={displayedChord} />}
             {selector === "shape" && <SelectorCombo noteSetter={setRoot} typeSetter={setShape} type="shape" typeInput={CAGEDshapes} handleClick={handleShape} displayed={JSON.stringify(displayedShape)} />}
 
 
