@@ -1,15 +1,21 @@
-import { createContext, useState, useReducer } from "react";
-import AppReducer from "./AppReducer";
+import { createContext, useReducer } from "react";
+
+
+const AppReducer = (state, action) => {
+    return {
+        ...state,
+        [action.type]: action.payload
+    }
+
+}
+
 
 const initialState = {
-    note: "A",
-    chord: {
-        name: "C7diminished",
-        notes: ["C", "Eb", "Gb", "Bb"]
-    },
-    scale: "CHrmonicminor",
-    shape: { "1": 2, "2": 3, "3": 1, "4": 2, "5": null, "6": null },
-
+    note: "",
+    chord: "",
+    scale: "",
+    shape: "",
+    selection: "",
 }
 
 export const MusicContext = createContext(initialState);
@@ -19,38 +25,44 @@ export const MusicContextProvider = ({ children }) => {
 
     function setNote(note) {
         dispatch({
-            type: "SET_NOTE",
+            type: "note",
             payload: note
         })
     }
 
     function setChord(chord) {
         dispatch({
-            type: "SET_CHORD",
+            type: "chord",
             payload: chord
         })
     }
 
     function setScale(scale) {
         dispatch({
-            type: "SET_SCALE",
+            type: "scale",
             payload: scale
         })
     }
 
     function setShape(shape) {
         dispatch({
-            type: "SET_SHAPE",
+            type: "shape",
             payload: shape
         })
     }
     function setRoot(root) {
         dispatch({
-            type: "SET_ROOT",
+            type: "root",
             payload: root
         })
     }
 
+    function setSelection(selection) {
+        dispatch({
+            type: "SET_Selection",
+            payload: selection
+        })
+    }
 
     return (
         <MusicContext.Provider
@@ -64,7 +76,9 @@ export const MusicContextProvider = ({ children }) => {
                 shape: state.shape,
                 setShape,
                 root: state.root,
-                setRoot
+                setRoot,
+                selection: state.selection,
+                setSelection
             }}>{children}</MusicContext.Provider>
     )
 }
