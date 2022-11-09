@@ -4,8 +4,9 @@ import GuitarString from './GuitarString';
 
 const Fretboard = () => {
     const tuning = ["E", "A", "D", "G", "B", "e"];
-    const thickness = useRef(0);
-    const { note, chord, scale, shape, setShape } = useContext(MusicContext);
+
+    let thickness = useRef(0);
+    const { chord, scale, shape, } = useContext(MusicContext);
 
     return (
         <div className='fretboard'>
@@ -16,7 +17,8 @@ const Fretboard = () => {
 
 
             {tuning.reverse().map((note => {
-                thickness.current++;
+                thickness.current = tuning.indexOf(note) + 1;
+
                 return <GuitarString key={note} note={note} thickness={JSON.stringify(thickness.current)} />
             }))}
 
