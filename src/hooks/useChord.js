@@ -7,10 +7,6 @@ const useChord = () => {
     const [chordState, setChordState] = useState("");
     const [displayedChord, setDisplayedChord] = useState(false);
 
-
-
-
-
     const handleChord = () => {
         const notes = Chord[chordState](chordNote);
         const name = chordNote + " " + chordState;
