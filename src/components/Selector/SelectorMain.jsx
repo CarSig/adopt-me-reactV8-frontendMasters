@@ -22,10 +22,12 @@ const SelectorMain = () => {
     }, [displayedChord]);
     useEffect(() => {
         setSelectedNotes(displayedScale)
+        console.log("fasdfasf")
         console.log(selectedNotes)
     }, [displayedScale]);
     useEffect(() => {
         setSelectedNotes(displayedShape)
+
         console.log(selectedNotes)
     }, [displayedShape]);
 

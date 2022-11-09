@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { getScale } from "../musicTheory";
+import { MusicContext } from "../Context/MusicContext";
 
 const useScale = () => {
-    const [scale, setScale] = useState("");
+    // const [scale, setScale] = useState("");
     const [scaleNote, setScaleNote] = useState("");
+    const { note, setScale, scale } = useContext(MusicContext);
 
     const [displayedScale, setDisplayedScale] = useState(false);
 
@@ -12,6 +14,7 @@ const useScale = () => {
         const result = getScale(scaleNote, scale);
 
         setDisplayedScale(result);
+        setScale(result)
 
     }
 

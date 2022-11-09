@@ -10,9 +10,8 @@ const Fretboard = () => {
     return (
         <div className='fretboard'>
             <h1>{JSON.stringify(shape)}</h1>
-            {//TODO: get this from context
+            <h1>{JSON.stringify(scale)}</h1>
 
-            }
 
 
             {tuning.reverse().map((note => {
