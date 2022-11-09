@@ -4,7 +4,9 @@ import useChord from '../../hooks/useChord';
 import useScale from '../../hooks/useScale';
 import useCAGEDshape from '../../hooks/useCAGEDshape';
 import { MusicContext } from '../../Context/MusicContext';
-import SelectorCombo from './SelectorCombo';
+// import SelectorCombo from './SelectorCombo';
+import NoteSelector from './NoteSelector'
+import MultiSelector from './MultiSelector'
 
 const SelectorMain = () => {
     const [selectedNotes, setSelectedNotes] = useState([]);
@@ -16,26 +18,23 @@ const SelectorMain = () => {
 
 
 
-    useEffect(() => {
-        setSelectedNotes(displayedChord)
-        console.log(selectedNotes)
-    }, [displayedChord]);
-    useEffect(() => {
-        setSelectedNotes(displayedScale)
-        console.log("fasdfasf")
-        console.log(selectedNotes)
-    }, [displayedScale]);
-    useEffect(() => {
-        setSelectedNotes(displayedShape)
 
-        console.log(selectedNotes)
-    }, [displayedShape]);
+
+    const getButton = (selected) => {
+        return (
+            <button onClick={() => { setSelector(selected) }} style={{ backgroundColor: selector === selected && "red" }}>{selected}</button>
+        )
+    }
+
+
 
     return (
         <div className='selectorMain'>
-            <button onClick={() => { setSelector("chord") }}>Chord</button>
-            <button onClick={() => { setSelector("scale") }}>Scale</button>
-            <button onClick={() => { setSelector("shape") }}>Shape</button>
+
+            {getButton("chord")}
+            {getButton("scale")}
+            {getButton("shape")}
+
 
 
 
@@ -44,6 +43,21 @@ const SelectorMain = () => {
             {selector === "shape" && <SelectorCombo noteSetter={setRoot} typeSetter={setShape} type="shape" typeInput={CAGEDshapes} handleClick={getCAGEDshape} displayed={JSON.stringify(displayedShape)} />}
 
 
+        </div >
+    )
+}
+
+
+
+
+const SelectorCombo = ({ noteSetter, typeSetter, type, typeInput, handleClick, displayed }) => {
+    const buttonName = type.charAt(0).toUpperCase() + type.slice(1)
+    return (
+        <div style={{ display: "flex", flexDirection: "column" }}>
+            <NoteSelector noteSetter={noteSetter} type={type} />
+            <MultiSelector typeSetter={typeSetter} type={type} typeInput={typeInput} />
+            <button className="btn btn-select" onClick={handleClick}>get {buttonName}</button>
+            {displayed}
         </div>
     )
 }
