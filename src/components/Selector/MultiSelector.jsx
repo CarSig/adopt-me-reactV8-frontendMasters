@@ -13,9 +13,7 @@ const MultiSelector = ({ type, typeSetter, typeInput }) => {
                     onChange={(e) => {
                         typeSetter(e.target.value);
                     }}
-                    onBlur={(e) => {
-                        typeSetter(e.target.value);
-                    }}
+
                 >
                     <option disabled />
 

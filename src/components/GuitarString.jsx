@@ -26,10 +26,12 @@ const GuitarString = ({ note, thickness }) => {
 
 
             {getFrets(note).map((fret, index) => {
+                //TODO: fix octave increasing on page refresh
+
                 fret.fretNote === "E" && octave.current++;
 
 
-                return <Fret key={index} fret={fret} emptyStringNote={note} octave={octave.current} thickness={thickness} />
+                return <Fret key={index} fret={fret} emptyStringNote={note} octave={octave.current} stringNumber={thickness} />
             }
 
             )}

@@ -1,29 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { Chord, Scale, CAGEDshapes } from "../../musicTheory";
-import useChord from '../../hooks/useChord';
-import useScale from '../../hooks/useScale';
-import useCAGEDshape from '../../hooks/useCAGEDshape';
+import useMusicGrouping from '../../hooks/useMusicGrouping';
+
 import { MusicContext } from '../../Context/MusicContext';
 // import SelectorCombo from './SelectorCombo';
 import NoteSelector from './NoteSelector'
 import MultiSelector from './MultiSelector'
 
 const SelectorMain = () => {
-
-    const { setChordNote, setChordState, displayedChord, handleChord } = useChord();
-    const { setScale, setScaleNote, displayedScale, handleScale } = useScale();
-    const { setShape, setRoot, displayedShape, handleShape } = useCAGEDshape();
-    const { selector, setSelector } = useContext(MusicContext)
+    const { handleChord, handleScale, handleShape } = useMusicGrouping();
+    const { selectorType, setSelectorType, setSelectorChord, setSelectorNote, setSelectorScale, setSelectorShape } = useContext(MusicContext)
 
 
 
     const getButton = (selected) => {
         return (
-            <button onClick={() => { setSelector(selected) }} style={{ backgroundColor: selector === selected && "red" }}>{selected}</button>
+            <button onClick={() => { setSelectorType(selected) }} style={{ backgroundColor: selectorType === selected && "red" }}>{selected}</button>
         )
     }
-
-
 
     return (
         <div className='selectorMain'>
@@ -33,9 +27,9 @@ const SelectorMain = () => {
             {getButton("shape")}
 
 
-            {selector === "scale" && <SelectorCombo noteSetter={setScaleNote} typeSetter={setScale} type="scale" typeInput={Scale} handleClick={handleScale} displayed={displayedScale} />}
-            {selector === "chord" && <SelectorCombo noteSetter={setChordNote} typeSetter={setChordState} type="chord" typeInput={Chord} handleClick={handleChord} displayed={displayedChord} />}
-            {selector === "shape" && <SelectorCombo noteSetter={setRoot} typeSetter={setShape} type="shape" typeInput={CAGEDshapes} handleClick={handleShape} displayed={JSON.stringify(displayedShape)} />}
+            {selectorType === "scale" && <SelectorCombo  typeSetter={setSelectorScale} type="scale" typeInput={Scale} handleClick={handleScale} />}
+            {selectorType === "chord" && <SelectorCombo  typeSetter={setSelectorChord} type="chord" typeInput={Chord} handleClick={handleChord} />}
+            {selectorType === "shape" && <SelectorCombo  typeSetter={setSelectorShape} type="shape" typeInput={CAGEDshapes} handleClick={handleShape} />}
 
 
         </div >
@@ -45,14 +39,15 @@ const SelectorMain = () => {
 
 
 
-const SelectorCombo = ({ noteSetter, typeSetter, type, typeInput, handleClick, displayed }) => {
+const SelectorCombo = ({  typeSetter, type, typeInput, handleClick }) => {
     const buttonName = type.charAt(0).toUpperCase() + type.slice(1)
     return (
         <div style={{ display: "flex", flexDirection: "column" }}>
-            <NoteSelector noteSetter={noteSetter} type={type} />
+            <NoteSelector  type={type} />
             <MultiSelector typeSetter={typeSetter} type={type} typeInput={typeInput} />
             <button className="btn btn-select" onClick={handleClick}>get {buttonName}</button>
-            {displayed}
+
+
         </div>
     )
 }

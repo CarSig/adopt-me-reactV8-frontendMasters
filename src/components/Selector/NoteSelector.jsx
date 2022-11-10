@@ -2,13 +2,11 @@ import React, { useContext } from 'react'
 import { CHROMATIC_SCALE } from "../../musicTheory";
 import { MusicContext } from '../../Context/MusicContext';
 
-const NoteSelector = ({ noteSetter, type }) => {
-    const { setNote } = useContext(MusicContext);
+const NoteSelector = ({ type }) => {
+    const { setNote, selectorNote, setSelectorNote } = useContext(MusicContext);
     const changeHandler = (e) => {
-        noteSetter(e);
+        setSelectorNote(e);
         setNote(e);
-
-        console.log(e)
     }
 
     const noteSelectorOptions = CHROMATIC_SCALE.map((option) => (
@@ -20,7 +18,7 @@ const NoteSelector = ({ noteSetter, type }) => {
 
             <label htmlFor="note">
                 Note
-                <select defaultValue="C"
+                <select defaultValue={selectorNote || "C"}
                     id="note" name="note"
                     onChange={(e) => { changeHandler(e.target.value) }}
                     onBlur={(e) => { changeHandler(e.target.value) }} >

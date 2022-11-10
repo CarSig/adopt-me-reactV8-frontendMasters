@@ -6,20 +6,22 @@ import COLOR_NOTE from '../constants/COLORS';
 
 import { MusicContext } from '../Context/MusicContext'
 
-const Fret = ({ fret, oneNotePerString, octave, thickness }) => {
-    const { note, chord, scale } = useContext(MusicContext);
-    // const isIn = chord?.includes(fret.fretNote)
-    const shape = { "1": 2, "2": 2, "3": 4, "4": 5, "5": null, "6": null }
-    // const activeNote = chord.notes.includes(fret.fretNote)
+const Fret = ({ fret, oneNotePerString, octave, stringNumber }) => {
+    const { shape, chord, scale, selector } = useContext(MusicContext);
+    const shapeChord = shape?.frets || { 6: 3, 5: 2, 4: 0, 3: 0, 2: 0, 1: 3 }
 
-    const activeNote = shape[thickness] === fret.fretNumber
+    const activeShape = shapeChord[stringNumber] === fret.fretNumber
+    const activeChord = chord?.notes?.includes(fret.fretNote)
+    const activeScale = scale?.notes?.includes(fret.fretNote)
+
+    const activeNote = selector === 'shape' ? activeShape : selector === 'chord' ? activeChord : activeScale
 
     const [selected, setSelected] = useState(activeNote);
 
 
-    // useEffect(() => {
-    //     setSelected(activeNote)
-    // }, [chord])
+    useEffect(() => {
+        setSelected(activeNote)
+    }, [shape, selector])
 
     const sound = fret?.fretNote?.length > 1 ? Notes[`${fret.fretNote.slice(0, 2)}`] : Notes[fret.fretNote];
 
@@ -42,7 +44,6 @@ const Fret = ({ fret, oneNotePerString, octave, thickness }) => {
 
     const styles = {
         fret: {
-
             width: `${fret.fretWidth * 3.4}rem`,
             height: "40px",
             // backgroundColor: "white",
@@ -58,17 +59,16 @@ const Fret = ({ fret, oneNotePerString, octave, thickness }) => {
         note: {
             height: "26px",
             width: "27px",
-            backgroundColor: `${selected && COLOR_NOTE[`${fret.fretNote}`]
-                }`,
+            backgroundColor: `${selected && COLOR_NOTE[`${fret.fretNote}`]}`,
             borderRadius: "50%",
-            // contrast letters with background color
+
             color: `${selected && !oneNotePerString ? "white" : "black"} `,
             border: `${selected && !oneNotePerString ? "1px solid black" : "none"} `,
-            // align text in center of fret
+
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            // align text in center of fret
+
             textAlign: "center",
         }
     }
@@ -81,7 +81,7 @@ const Fret = ({ fret, oneNotePerString, octave, thickness }) => {
             <div className="note" style={styles.note}>
                 {fret?.fretNote?.length < 2 ? fret.fretNote : fret.fretNote}
 
-
+                {octave}
             </div>
         </div>
 
