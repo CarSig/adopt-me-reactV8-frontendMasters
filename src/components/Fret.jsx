@@ -19,17 +19,15 @@ const Fret = ({ fret, oneNotePerString, octave, stringNumber }) => {
     useEffect(() => {
 
         const activeShape = selectorType === 'shape' && fret.fretNumber === 12
-        // const activeShape = shapeChord[stringNumber] === fret.fretNumber
-        const activeChord = selectorType === 'chord' && fret.fretNumber === 1
-        // const activeChord = selectorType === 'chord' && chord?.notes?.includes(fret.fretNote)
-        // const activeScale = selectorType === 'scale' && scale?.notes?.includes(fret.fretNote)
-        const activeScale = selectorType === 'scale' && fret.fretNumber === 7
+
+        const activeChord = selectorType === 'chord' && chord?.notes?.includes(fret.fretNote)
+        const activeScale = selectorType === 'scale' && scale?.notes?.includes(fret.fretNote)
         const activeNote = activeChord || activeScale || activeShape
 
 
         setSelected(activeNote)
 
-    }, [shape, selectorType])
+    }, [selectorType, chord, scale, shape])
 
     const sound = fret?.fretNote?.length > 1 ? Notes[`${fret.fretNote.slice(0, 2)}`] : Notes[fret.fretNote];
 
@@ -61,11 +59,11 @@ const Fret = ({ fret, oneNotePerString, octave, stringNumber }) => {
         note: {
             height: "26px",
             width: "27px",
-            backgroundColor: `${selected && COLOR_NOTE[`${fret.fretNote}`]}`,
+            // backgroundColor: `${selected && COLOR_NOTE[`${fret.fretNote}`]}`,
             borderRadius: "50%",
 
-            color: `${selected && !oneNotePerString ? "white" : "black"} `,
-            border: `${selected && !oneNotePerString ? "1px solid black" : "none"} `,
+            color: `${selected ? "white" : "black"} `,
+            border: `${selected ? "1px solid black" : "none"} `,
 
             display: "flex",
             justifyContent: "center",
