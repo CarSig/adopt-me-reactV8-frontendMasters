@@ -10,6 +10,7 @@ const initialState = {
     selectorChord: "major",
     selectorScale: "major",
     selectorNote: "C",
+    selectorShape: "C",
 
 }
 

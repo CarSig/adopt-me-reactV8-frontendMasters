@@ -10,9 +10,10 @@ const Fretboard = () => {
 
     return (
         <div className='fretboard'>
-            <h1>{JSON.stringify(shape)}</h1>
-            <h1>{JSON.stringify(scale)}</h1>
-            <h1>{JSON.stringify(chord)}</h1>
+            <h2>chord:{chord.name} ---- {chord.notes}</h2>
+            <h2>scale:{scale.name} ---- {scale.notes}</h2>
+            <h2>shape:{JSON.stringify(shape.frets)} ---- chord {shape.selectorNote} in {shape.selectorShape} shape</h2>
+
 
 
 
