@@ -7,21 +7,29 @@ import COLOR_NOTE from '../constants/COLORS';
 import { MusicContext } from '../Context/MusicContext'
 
 const Fret = ({ fret, oneNotePerString, octave, stringNumber }) => {
-    const { shape, chord, scale, selector } = useContext(MusicContext);
-    const shapeChord = shape?.frets || { 6: 3, 5: 2, 4: 0, 3: 0, 2: 0, 1: 3 }
+    const { shape, chord, scale, selectorType } = useContext(MusicContext);
+    const [selected, setSelected] = useState(false);
 
-    const activeShape = shapeChord[stringNumber] === fret.fretNumber
-    const activeChord = chord?.notes?.includes(fret.fretNote)
-    const activeScale = scale?.notes?.includes(fret.fretNote)
 
-    const activeNote = selector === 'shape' ? activeShape : selector === 'chord' ? activeChord : activeScale
 
-    const [selected, setSelected] = useState(activeNote);
+
+
 
 
     useEffect(() => {
+
+        const activeShape = selectorType === 'shape' && fret.fretNumber === 12
+        // const activeShape = shapeChord[stringNumber] === fret.fretNumber
+        const activeChord = selectorType === 'chord' && fret.fretNumber === 1
+        // const activeChord = selectorType === 'chord' && chord?.notes?.includes(fret.fretNote)
+        // const activeScale = selectorType === 'scale' && scale?.notes?.includes(fret.fretNote)
+        const activeScale = selectorType === 'scale' && fret.fretNumber === 7
+        const activeNote = activeChord || activeScale || activeShape
+
+
         setSelected(activeNote)
-    }, [shape, selector])
+
+    }, [shape, selectorType])
 
     const sound = fret?.fretNote?.length > 1 ? Notes[`${fret.fretNote.slice(0, 2)}`] : Notes[fret.fretNote];
 
@@ -30,13 +38,7 @@ const Fret = ({ fret, oneNotePerString, octave, stringNumber }) => {
 
 
     const handleClick = () => {
-        setSelected(!selected);
-        console.log(fret.fretNote)
-
         playSound()
-
-
-        // play audio
     }
 
     // get color for each note in chromatic scale

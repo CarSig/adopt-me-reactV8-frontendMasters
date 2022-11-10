@@ -1,11 +1,11 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { MusicContext } from '../Context/MusicContext';
 import GuitarString from './GuitarString';
 
 const Fretboard = () => {
     const tuning = ["E", "A", "D", "G", "B", "e"];
 
-    let thickness = useRef(0);
+    let thickness = useRef(1);
     const { chord, scale, shape } = useContext(MusicContext);
 
     return (

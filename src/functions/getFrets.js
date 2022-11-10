@@ -3,7 +3,7 @@ import { CHROMATIC_SCALE } from "../musicTheory";
 function getFrets(note) {
     let frets = [];
     let totalFrets = 21;
-    let noteIndex = CHROMATIC_SCALE.indexOf(note) + 1
+    let noteIndex = CHROMATIC_SCALE.indexOf(note.toUpperCase()) + 1
     let scaleLength = 51.5;
     let fretNumber = 0
     let activeNote = false
