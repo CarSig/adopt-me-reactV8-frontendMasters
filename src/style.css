@@ -138,3 +138,23 @@ button {
   padding: 10px;
   box-sizing: border-box;
 }
+
+/* ---------guitar---------*/
+.note {
+  height: 27px;
+  width: 27px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.fret {
+  height: 40px;
+  border: 1px solid black;
+  border-left: none;
+  border-right: 4px solid #ddd;
+  justify-content: center;
+  text-align: center;
+}

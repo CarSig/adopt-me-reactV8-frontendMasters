@@ -56,6 +56,11 @@ const AppReducer = (state, action) => {
                 ...state,
                 selectorShape: action.payload
             }
+        case "SET_FRETS_ACTIVE":
+            return {
+                ...state,
+                fretsActive: action.payload
+            }
 
 
         default:
