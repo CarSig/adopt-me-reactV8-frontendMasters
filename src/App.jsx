@@ -6,6 +6,7 @@ import { MusicContext, MusicContextProvider } from "./Context/MusicContext";
 import Fret from "./components/Fret";
 import Fretboard from "./components/Fretboard";
 import SelectorMain from "./components/Selector/SelectorMain";
+import React from "react";
 
 
 
@@ -21,25 +22,28 @@ const queryClient = new QueryClient({
 const App = () => {
 
   return (
-    <div>
-
-      <BrowserRouter>
-        <MusicContextProvider value={MusicContext}>
-          <QueryClientProvider client={queryClient}>
-            <header>
-              <Link to="/"><h1>Guitar</h1></Link>
-            </header>
-            <SelectorMain />
+    <React.StrictMode>
+      <div>
 
 
-            <Routes>
-              <Route path="/details/:id" element={<Fret />} />
-              <Route path="/" element={<Fretboard />} />
-            </Routes>
-          </QueryClientProvider>
-        </MusicContextProvider>
-      </BrowserRouter>
-    </div>
+        <BrowserRouter>
+          <MusicContextProvider value={MusicContext}>
+            <QueryClientProvider client={queryClient}>
+              <header>
+                <Link to="/"><h1>Guitar</h1></Link>
+              </header>
+              <SelectorMain />
+
+
+              <Routes>
+                <Route path="/details/:id" element={<Fret />} />
+                <Route path="/" element={<Fretboard />} />
+              </Routes>
+            </QueryClientProvider>
+          </MusicContextProvider>
+        </BrowserRouter>
+      </div >
+    </React.StrictMode>
   );
 };
 

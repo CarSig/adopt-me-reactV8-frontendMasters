@@ -64,10 +64,12 @@ export const getCAGEDshape = (root, shape) => {
     const fretDelays = { C: 0, "C#": 1, "D♭": 1, D: 2, "D#": 3, "E♭": 3, E: 4, F: 5, "F#": 6, "G♭": 6, G: 7, "G#": 8, "A♭": 8, A: 9, "A#": 10, "B♭": 10, B: 11 };
     const stringShape = CAGEDshapes[`${shape}`]
     const fretDelay = fretDelays[root];
+    // let finalShape = []
     let finalShape = {}
 
     for (let guitarString in CAGEDshapes[root]) {
         stringShape[guitarString] = (CAGEDshapes[root][guitarString] !== null) ? CAGEDshapes[root][guitarString] + fretDelay : null
+        // finalShape = [...finalShape, stringShape[guitarString]]
         finalShape = { ...finalShape, [guitarString]: stringShape[guitarString] }
     }
 

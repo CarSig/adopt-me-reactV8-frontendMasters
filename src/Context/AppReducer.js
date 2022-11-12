@@ -56,10 +56,10 @@ const AppReducer = (state, action) => {
                 ...state,
                 selectorShape: action.payload
             }
-        case "SET_FRETS_ACTIVE":
+        case "SET_ALL_FRETS_MAP":
             return {
                 ...state,
-                fretsActive: action.payload
+                allFretsMap: action.payload
             }
 
 

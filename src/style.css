@@ -150,6 +150,10 @@ button {
   text-align: center;
 }
 
+.note-selected {
+  background-color: #66e6c1;
+  color: #333;
+}
 .fret {
   height: 40px;
   border: 1px solid black;

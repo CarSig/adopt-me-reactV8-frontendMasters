@@ -6,8 +6,8 @@ import Notes from '../components/SoundNote';
 
 import { MusicContext } from '../Context/MusicContext'
 
-const Fret = ({ fret, octave }) => {
-    const { shape, chord, scale, selectorType, selectorNote } = useContext(MusicContext);
+const Fret = ({ fret, octave, stringNumber }) => {
+    const { shape, chord, scale, selectorType, selectorNote, allFretsMap } = useContext(MusicContext);
     const [selected, setSelected] = useState(false);
     const sharpNote = fret?.fretNote?.slice(0, 2)
     const flatNote = fret?.fretNote?.slice(3, 5)
@@ -17,7 +17,7 @@ const Fret = ({ fret, octave }) => {
 
     useEffect(() => {
 
-        const activeShape = selectorType === 'shape' && fret.fretNumber === 12
+        const activeShape = selectorType === 'shape' && allFretsMap[stringNumber][fret.fretNumber] === true
 
         const activeChord = selectorType === 'chord' && (chord?.notes?.includes(fret.fretNote) || chord?.notes?.includes(sharpNote) || chord?.notes?.includes(flatNote))
         const activeScale = selectorType === 'scale' && (scale?.notes?.includes(fret.fretNote) || scale?.notes?.includes(sharpNote) || scale?.notes?.includes(flatNote))
@@ -26,7 +26,7 @@ const Fret = ({ fret, octave }) => {
 
         setSelected(activeNote)
 
-    }, [selectorType, chord, scale, shape])
+    }, [selectorType, chord, scale, shape, allFretsMap])
 
     const sound = fret?.fretNote?.length > 1 ? Notes[`${fret.fretNote.slice(0, 2)}`] : Notes[fret.fretNote];
 
@@ -38,7 +38,6 @@ const Fret = ({ fret, octave }) => {
         playSound()
     }
 
-    // get color for each note in chromatic scale
 
 
     const styles = {
@@ -51,7 +50,7 @@ const Fret = ({ fret, octave }) => {
             // backgroundColor: `${selected ? COLOR_NOTE[`${fret.fretNote}`] : null}`,
             color: `${selected ? "white" : "black"} `,
             border: `${selected ? "1px solid black" : "none"} `,
-            backgroundColor: `${selected && selectorNote === fret.fretNote ? "red" : null}`,
+            // backgroundColor: `${selectorNote === fret.fretNote ? "red" : null}`,
 
         }
     }
@@ -63,7 +62,7 @@ const Fret = ({ fret, octave }) => {
 
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
         <div onClick={handleClick} style={styles.fret} className="fret">
-            <div className="note" style={styles.note}>
+            <div className={`note ${selectorNote === fret.fretNote ? "note-selected" : null}`} style={styles.note}>
                 {fret?.fretNote?.length < 2 ? fret.fretNote : fret.fretNote}
 
                 {octave}
