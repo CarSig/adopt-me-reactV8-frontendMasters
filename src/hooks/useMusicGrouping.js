@@ -48,6 +48,8 @@ const useMusicGrouping = () => {
     }
     return { handleScale, handleChord, handleShape };
 }
+
+
 export default useMusicGrouping;
 
 
