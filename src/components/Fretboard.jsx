@@ -6,13 +6,13 @@ const Fretboard = () => {
     const tuning = ["E", "A", "D", "G", "B", "e"];
 
     let thickness = useRef(1);
-    const { chord, scale, shape } = useContext(MusicContext);
+    const { chord, scale, shape, selectorNote, selectorShape } = useContext(MusicContext);
 
     return (
         <div className='fretboard'>
             <h2>chord:{chord.name} ---- {chord.notes}</h2>
             <h2>scale:{scale.name} ---- {scale.notes}</h2>
-            <h2>shape:{JSON.stringify(shape.frets)} ---- chord {shape.selectorNote} in {shape.selectorShape} shape</h2>
+            <h2>shape:{JSON.stringify(shape.frets)} ---- chord {selectorNote} in {selectorShape} shape</h2>
 
 
 

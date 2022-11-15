@@ -64,7 +64,6 @@ const Fret = ({ fret, octave, stringNumber }) => {
         <div onClick={handleClick} style={styles.fret} className="fret">
             <div className={`note ${selectorNote === fret.fretNote ? "note-selected" : null}`} style={styles.note}>
                 {fret?.fretNote?.length < 2 ? fret.fretNote : fret.fretNote}
-
                 {octave}
             </div>
         </div>

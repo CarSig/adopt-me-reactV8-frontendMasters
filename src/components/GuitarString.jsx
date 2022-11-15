@@ -9,6 +9,8 @@ const GuitarString = ({ note, thickness }) => {
 
 
 
+
+
     return (
         <div style={{
             display: "flex",
@@ -34,7 +36,7 @@ const GuitarString = ({ note, thickness }) => {
                 } else {
                     octave.current = 1
                 }
-                fret.fretNote === "E" && octave.current++;;
+                fret.fretNote === "E" && octave.current++;
 
                 return <Fret key={index} fret={fret} emptyStringNote={note} octave={octave.current} stringNumber={thickness} />
             }
