@@ -62,17 +62,18 @@ export const getScale = (note, scaleType) => {
 
 export const getCAGEDshape = (root, shape) => {
     const fretDelays = { C: 0, "C#": 1, "D♭": 1, D: 2, "D#": 3, "E♭": 3, E: 4, F: 5, "F#": 6, "G♭": 6, G: 7, "G#": 8, "A♭": 8, A: 9, "A#": 10, "B♭": 10, B: 11 };
+    const fretDelay = (fretDelays[root] - fretDelays[shape] >= 0) ? fretDelays[root] - fretDelays[shape] : 12 + fretDelays[root] - fretDelays[shape];
     const stringShape = CAGEDshapes[`${shape}`]
-    const fretDelay = fretDelays[root];
-    // let finalShape = []
+
     let finalShape = {}
 
-    for (let guitarString in CAGEDshapes[root]) {
-        stringShape[guitarString] = (CAGEDshapes[root][guitarString] !== null) ? CAGEDshapes[root][guitarString] + fretDelay : null
-        // finalShape = [...finalShape, stringShape[guitarString]]
-        finalShape = { ...finalShape, [guitarString]: stringShape[guitarString] }
+    for (let guitarString in stringShape) {
+        // add fret delay to each string of the shape, unless the string is not played (null)
+        stringShape[`${guitarString}`] = (stringShape[`${guitarString}`] !== null) ? stringShape[`${guitarString}`] + fretDelay : null
+        // overwrite the shape object with the new guitar string
+        finalShape = { ...finalShape, [guitarString]: stringShape[`${guitarString}`] }
     }
-
+    console.log("finalShape", finalShape)
     return finalShape
 
 
@@ -80,22 +81,6 @@ export const getCAGEDshape = (root, shape) => {
 
 getCAGEDshape("A", "E")
 
-// export const getChord = (root, chord) => {
-//     const chordNotes = [root];
-//     let index = CHROMATIC_SCALE.indexOf(root);
-//     let prevNote = ""
-//     chord.forEach(interval => {
-//         index += interval;
-//         if (index > 11) {
-//             index -= 12;
-//         }
-
-
-//         const note = CHROMATIC_SCALE[index].slice(0, 1) !== prevNote.slice(0, 1) ? (CHROMATIC_SCALE[index].slice(0, 2)) : CHROMATIC_SCALE[index].slice(3, 5);
-//         chordNotes.push(note);
-//         prevNote = note
-//     })
-// }
 
 
 

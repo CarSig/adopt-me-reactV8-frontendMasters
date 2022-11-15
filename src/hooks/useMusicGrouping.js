@@ -25,11 +25,12 @@ const useMusicGrouping = () => {
 
     const handleShape = () => {
         const CAGEDshape = getCAGEDshape(selectorNote, selectorShape);
+        // console.log("CAGEDshape", JSON.stringify(CAGEDshape))
         const stringNumbers = [6, 5, 4, 3, 2, 1];
         // set true the fields that are active
-        console.log(CAGEDshape)
+
         let fretBoard = allFretsMap
-        console.log(fretBoard)
+
 
         setAllFretsMap(fretBoard)
         for (let num of stringNumbers) {
@@ -43,7 +44,6 @@ const useMusicGrouping = () => {
 
 
         }
-        console.log(fretBoard)
 
     }
     return { handleScale, handleChord, handleShape };

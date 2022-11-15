@@ -22,7 +22,7 @@ const GuitarString = ({ note, thickness }) => {
                 justifyText: "center",
                 textAlign: "center",
                 cursor: "pointer",
-            }}>{note} {thickness} </div>
+            }}>{note}  {thickness} </div>
 
 
             {getFrets(note).map((fret, index) => {
@@ -31,18 +31,10 @@ const GuitarString = ({ note, thickness }) => {
                     octave.current = 3
                 } else if (thickness < 4) {
                     octave.current = 2
-                }
-                else {
+                } else {
                     octave.current = 1
                 }
-
-
                 fret.fretNote === "E" && octave.current++;;
-
-
-
-
-
 
                 return <Fret key={index} fret={fret} emptyStringNote={note} octave={octave.current} stringNumber={thickness} />
             }

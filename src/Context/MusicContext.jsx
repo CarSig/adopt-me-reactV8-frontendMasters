@@ -6,7 +6,7 @@ const initialState = {
     chord: "",
     scale: "",
     shape: "",
-    selectorType: "chord",
+    selectorType: "shape",
     selectorChord: "major",
     selectorScale: "major",
     selectorNote: "C",
