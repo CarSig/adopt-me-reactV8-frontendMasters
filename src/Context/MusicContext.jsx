@@ -11,10 +11,11 @@ const initialState = {
     selectorScale: "major",
     selectorNote: "C",
     selectorShape: "C",
+    shapeCoordinates: { 1: null, 2: null, 3: null, 4: null, 5: null, 6: null },
     allFretsMap: {
         1: {
             0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false, 13: false, 14: false,
-            15: false, 16: false, 17: false, 18: false, 19: false, 20: false, 21: false, 22: false, 23: false, 24: false
+            15: false, 16: false, 17: false, 18: false, 19: false, 20: false, 21: false, 22: false, 23: false, 24: false, "test": "blah"
         },
         2: {
             0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false, 13: false, 14: false,
@@ -124,6 +125,12 @@ export const MusicContextProvider = ({ children }) => {
 
         })
     }
+    function setShapeCoordinates(shapeCoordinates) {
+        dispatch({
+            type: "SET_SHAPE_COORDINATES",
+            payload: shapeCoordinates
+        })
+    }
 
 
     return (
@@ -151,8 +158,10 @@ export const MusicContextProvider = ({ children }) => {
             , selectorShape: state.selectorShape,
             setSelectorShape
             , allFretsMap: state.allFretsMap
-            ,
-            setAllFretsMap
+            , setAllFretsMap
+            , shapeCoordinates: state.shapeCoordinates
+            , setShapeCoordinates
+
 
         }}>{children}</MusicContext.Provider>
     )

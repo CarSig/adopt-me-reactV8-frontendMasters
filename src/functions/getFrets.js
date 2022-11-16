@@ -23,7 +23,7 @@ function getFrets(note) {
         frets.push({ fretWidth, fretNote, fretNumber, activeNote });
         scaleLength -= fretWidth;
     }
-    console.log(frets)
+
     return frets;
 
 }

@@ -7,7 +7,7 @@ import Notes from '../components/SoundNote';
 import { MusicContext } from '../Context/MusicContext'
 
 const Fret = ({ fret, octave, stringNumber }) => {
-    const { shape, chord, scale, selectorType, selectorNote, allFretsMap } = useContext(MusicContext);
+    const { shape, chord, scale, selectorType, selectorNote, allFretsMap, shapeCoordinates } = useContext(MusicContext);
     const [selected, setSelected] = useState(false);
     const sharpNote = fret?.fretNote?.slice(0, 2)
     const flatNote = fret?.fretNote?.slice(3, 5)
@@ -17,7 +17,8 @@ const Fret = ({ fret, octave, stringNumber }) => {
 
     useEffect(() => {
 
-        const activeShape = selectorType === 'shape' && allFretsMap[stringNumber][fret.fretNumber] === true
+        const activeShape = selectorType === 'shape' && shapeCoordinates[stringNumber] === fret.fretNumber
+
 
         const activeChord = selectorType === 'chord' && (chord?.notes?.includes(fret.fretNote) || chord?.notes?.includes(sharpNote) || chord?.notes?.includes(flatNote))
         const activeScale = selectorType === 'scale' && (scale?.notes?.includes(fret.fretNote) || scale?.notes?.includes(sharpNote) || scale?.notes?.includes(flatNote))
@@ -36,6 +37,11 @@ const Fret = ({ fret, octave, stringNumber }) => {
 
     const handleClick = () => {
         playSound()
+        console.log(shapeCoordinates)
+        console.log(shapeCoordinates[stringNumber], "stringNumber", stringNumber, "fretNumber", fret.fretNumber)
+        if (shapeCoordinates[stringNumber] === fret.fretNumber) {
+            console.log("YEAH")
+        }
     }
 
 

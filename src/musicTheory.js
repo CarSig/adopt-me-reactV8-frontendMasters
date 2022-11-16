@@ -63,7 +63,7 @@ export const getScale = (note, scaleType) => {
 export const getCAGEDshape = (root, shape) => {
     const fretDelays = { C: 0, "C#": 1, "D♭": 1, D: 2, "D#": 3, "E♭": 3, E: 4, F: 5, "F#": 6, "G♭": 6, G: 7, "G#": 8, "A♭": 8, A: 9, "A#": 10, "B♭": 10, B: 11 };
     const fretDelay = (fretDelays[root] - fretDelays[shape] >= 0) ? fretDelays[root] - fretDelays[shape] : 12 + fretDelays[root] - fretDelays[shape];
-    const stringShape = CAGEDshapes[`${shape}`]
+    let stringShape = CAGEDshapes[`${shape}`]
 
     let finalShape = {}
 
@@ -74,6 +74,7 @@ export const getCAGEDshape = (root, shape) => {
         finalShape = { ...finalShape, [guitarString]: stringShape[`${guitarString}`] }
     }
     console.log("finalShape", finalShape)
+    //! when clicked same shape+note as already selected, shapeCoordinates does not stay the same but has added fret delay on each non null string
     return finalShape
 
 
