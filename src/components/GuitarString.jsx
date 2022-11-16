@@ -2,9 +2,15 @@ import React, { useRef, useContext, useState, useEffect } from 'react'
 import Fret from './Fret'
 import getFrets from '../functions/getFrets'
 import { MusicContext } from '../Context/MusicContext';
+import { getIntervalColor } from '../functions/getIntervalColor';
+import { useChordInterval } from '../hooks/useChordInterval';
 
 const GuitarString = ({ note, thickness }) => {
-    const { shapeCoordinates } = useContext(MusicContext);
+    const emptyString = { fretNote: note.toUpperCase(), fretNumber: 0 }
+
+
+    const { selected, interval, colors } = useChordInterval(emptyString, thickness);
+    const { shapeCoordinates, chord, selectorNote } = useContext(MusicContext);
     const startOctave = thickness < 2 ? 3 : thickness < 4 ? 2 : 1;
     const octave = useRef(startOctave);
     const [emptyStringNote, setEmptyStringNote] = useState("")
@@ -13,7 +19,7 @@ const GuitarString = ({ note, thickness }) => {
     }, [shapeCoordinates])
 
 
-    console.log(JSON.stringify(shapeCoordinates[`${thickness}`]))
+
 
 
 
@@ -25,15 +31,13 @@ const GuitarString = ({ note, thickness }) => {
             <div style={{
                 width: "50px",
                 height: "40px",
-                backgroundColor: `${emptyStringNote === 0 ? "yellow" : "grey"}`,
-
-
-
+                backgroundColor: `${emptyStringNote === 0 ? colors : "#2d210f"}`,
+                color: `${emptyStringNote === 0 ? "black" : "white"}`,
                 fontWeight: "bold",
                 justifyText: "center",
                 textAlign: "center",
                 cursor: "pointer",
-            }}>{note}  {thickness}  </div>
+            }}>{note}  {thickness}   </div>
 
 
             {
