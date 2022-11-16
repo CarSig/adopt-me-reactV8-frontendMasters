@@ -7,17 +7,42 @@ import Notes from '../components/SoundNote';
 import { MusicContext } from '../Context/MusicContext'
 
 const Fret = ({ fret, octave, stringNumber }) => {
-    const { shape, chord, scale, selectorType, selectorNote, allFretsMap, shapeCoordinates } = useContext(MusicContext);
+    const { shape, chord, scale, selectorType, selectorNote, shapeCoordinates } = useContext(MusicContext);
     const [selected, setSelected] = useState(false);
+    const [interval, setinterval] = useState("");
+
+
     const sharpNote = fret?.fretNote?.slice(0, 2)
     const flatNote = fret?.fretNote?.slice(3, 5)
-    // const third = (chord?.notes[1] || scale?.note[2]) === fret.fretNote
-    // const fifth = (chord?.notes[2] || scale?.note[4]) === fret.fretNote
+
+    const checkInterval = () => {
+        if (selectorNote === fret.fretNote) {
+            setinterval("root")
+        }
+        else if (chord?.notes?.length > 1) {
+            if (chord?.notes[1] || scale?.note[2]) {
+                setinterval("third")
+            } else if (chord?.notes[2] || scale?.note[4]) {
+                setinterval("fifth")
+            } else if (chord?.notes[3] || scale?.note[5]) {
+                setinterval("seventh")
+            } else if (chord?.notes[4] || scale?.note[7]) {
+                setinterval("ninth")
+            }
+        }
+
+    }
+
+
+    // const root = selectorNote === fret.fretNote
+    // const third = chord?.notes?.length > 1 ? (chord?.notes[1] || scale?.note[2]) === fret.fretNote : false
+    // const fifth = chord?.notes?.length > 1 ? (chord?.notes[2] || scale?.note[4]) === fret.fretNote : false
 
 
     useEffect(() => {
-
-        const activeShape = selectorType === 'shape' && shapeCoordinates[stringNumber] === fret.fretNumber
+        setSelected(false)
+        //* ovdje dodati da se moze iskljcuiti dupli prikaz
+        const activeShape = selectorType === 'shape' && (shapeCoordinates[stringNumber] === fret.fretNumber || shapeCoordinates[stringNumber] === fret.fretNumber - 12)
 
 
         const activeChord = selectorType === 'chord' && (chord?.notes?.includes(fret.fretNote) || chord?.notes?.includes(sharpNote) || chord?.notes?.includes(flatNote))
@@ -25,9 +50,10 @@ const Fret = ({ fret, octave, stringNumber }) => {
         const activeNote = activeChord || activeScale || activeShape
 
 
-        setSelected(activeNote)
+        setSelected(activeShape)
+        // setSelected(activeNote)
 
-    }, [selectorType, chord, scale, shape, allFretsMap])
+    }, [selectorType, chord, scale, shape, shapeCoordinates])
 
     const sound = fret?.fretNote?.length > 1 ? Notes[`${fret.fretNote.slice(0, 2)}`] : Notes[fret.fretNote];
 
@@ -38,10 +64,11 @@ const Fret = ({ fret, octave, stringNumber }) => {
     const handleClick = () => {
         playSound()
         console.log(shapeCoordinates)
-        console.log(shapeCoordinates[stringNumber], "stringNumber", stringNumber, "fretNumber", fret.fretNumber)
+        console.log("key: ", shapeCoordinates[stringNumber], " value: ", stringNumber, " pressed: ", fret.fretNumber)
         if (shapeCoordinates[stringNumber] === fret.fretNumber) {
             console.log("YEAH")
         }
+        console.log("root: ", root.toString(), " third: ", third.toString(), " fifth: ", fifth.toString())
     }
 
 
@@ -53,22 +80,30 @@ const Fret = ({ fret, octave, stringNumber }) => {
             fontSize: `${fret?.fretNote?.length < 2 ? "1rem" : "0.8rem"}`,
         },
         note: {
-            // backgroundColor: `${selected ? COLOR_NOTE[`${fret.fretNote}`] : null}`,
-            color: `${selected ? "white" : "black"} `,
-            border: `${selected ? "1px solid black" : "none"} `,
-            // backgroundColor: `${selectorNote === fret.fretNote ? "red" : null}`,
 
+            color: "black",
+            border: "none",
+            // backgroundColor: `${selected ? "red" : null}`,
+            // color: `${selected ? "white" : "black"} `,
+            // border: `${selected ? "1px solid black" : "none"} `,
+
+
+        },
+        selected: {
+            backgroundColor: "fuchsia",
+            color: "white",
+            border: "1px solid black",
         }
     }
 
-
+    const colors = third ? "green" : fifth ? "blue" : root ? "red" : null
 
     return (
 
 
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
         <div onClick={handleClick} style={styles.fret} className="fret">
-            <div className={`note ${selectorNote === fret.fretNote ? "note-selected" : null}`} style={styles.note}>
+            <div className={`note ${selectorNote === fret.fretNote ? "note-selected" : null}`} style={{ backgroundColor: selected && "fuchsia", color: selected && "white" }}>
                 {fret?.fretNote?.length < 2 ? fret.fretNote : fret.fretNote}
                 {octave}
             </div>

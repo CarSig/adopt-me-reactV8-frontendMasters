@@ -20,12 +20,9 @@ export const CAGEDshapes = {
     C: { 6: null, 5: 3, 4: 2, 3: 0, 2: 1, 1: 0 },
     A: { 6: 0, 5: 2, 4: 2, 3: 2, 2: 0, 1: 0 },
     G: { 6: 3, 5: 2, 4: 0, 3: 0, 2: 0, 1: 3 },
-    E: { 6: 0, 5: 1, 4: 0, 3: 2, 2: 2, 1: 0 },
+    E: { 6: 0, 5: 2, 4: 2, 3: 1, 2: 0, 1: 0 },
     D: { 6: null, 5: null, 4: 3, 3: 2, 2: 0, 1: 0 },
 }
-
-
-
 
 
 export const isNoteAlreadyInScale = (note, prevNote) => {
@@ -62,7 +59,9 @@ export const getScale = (note, scaleType) => {
 
 export const getCAGEDshape = (root, shape) => {
     const fretDelays = { C: 0, "C#": 1, "D♭": 1, D: 2, "D#": 3, "E♭": 3, E: 4, F: 5, "F#": 6, "G♭": 6, G: 7, "G#": 8, "A♭": 8, A: 9, "A#": 10, "B♭": 10, B: 11 };
-    const fretDelay = (fretDelays[root] - fretDelays[shape] >= 0) ? fretDelays[root] - fretDelays[shape] : 12 + fretDelays[root] - fretDelays[shape];
+    //remove accidental from root
+    const rootNote = root.slice(0, 2);
+    const fretDelay = (fretDelays[rootNote] - fretDelays[shape] >= 0) ? fretDelays[rootNote] - fretDelays[shape] : 12 + fretDelays[rootNote] - fretDelays[shape];
     let stringShape = CAGEDshapes[`${shape}`]
 
     let finalShape = {}
@@ -81,7 +80,6 @@ export const getCAGEDshape = (root, shape) => {
 
 }
 
-getCAGEDshape("A", "E")
 
 
 
@@ -100,7 +98,10 @@ export const Triads = {
     major: [0, 4, 7],
     minor: [0, 3, 7],
     diminished: [0, 3, 6],
-    augmented: [0, 4, 8]
+    augmented: [0, 4, 8],
+    sus2: [0, 2, 7],
+    sus4: [0, 5, 7],
+
 }
 
 export const SeventhChords = {
@@ -109,6 +110,15 @@ export const SeventhChords = {
     dominant: [0, 4, 7, 10],
     diminished: [0, 3, 6, 9],
     augmented: [0, 4, 8, 10]
+}
+
+export const NinthChords = {
+    major: [0, 4, 7, 11, 14],
+    minor: [0, 3, 7, 10, 14],
+    dominant: [0, 4, 7, 10, 14],
+    diminished: [0, 3, 6, 9, 13],
+    augmented: [0, 4, 8, 10, 14],
+
 }
 
 
