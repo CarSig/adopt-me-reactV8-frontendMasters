@@ -69,12 +69,13 @@ export const getCAGEDshape = (root, shape) => {
 
     for (let guitarString in stringShape) {
         // add fret delay to each string of the shape, unless the string is not played (null)
-        stringShape[`${guitarString}`] = (stringShape[`${guitarString}`] !== null) ? stringShape[`${guitarString}`] + fretDelay : null
+        const activeFret = (stringShape[`${guitarString}`] !== null) ? stringShape[`${guitarString}`] + fretDelay : null
         // overwrite the shape object with the new guitar string
-        finalShape = { ...finalShape, [guitarString]: stringShape[`${guitarString}`] }
+        finalShape = { ...finalShape, [guitarString]: activeFret }
     }
     console.log("finalShape", finalShape)
-    //! when clicked same shape+note as already selected, shapeCoordinates does not stay the same but has added fret delay on each non null string
+
+
     return finalShape
 
 

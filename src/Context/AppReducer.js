@@ -56,11 +56,7 @@ const AppReducer = (state, action) => {
                 ...state,
                 selectorShape: action.payload
             }
-        case "SET_ALL_FRETS_MAP":
-            return {
-                ...state,
-                allFretsMap: action.payload
-            }
+
         case "SET_SHAPE_COORDINATES":
             return {
                 ...state,
