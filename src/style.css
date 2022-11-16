@@ -151,7 +151,9 @@ button {
 }
 
 .note-selected {
-  background-color: #66e6c1;
+  /* background-color: #66e6c1; */
+  border-bottom: 2px solid white;
+  border-top: 2px solid white;
   color: #333;
 }
 .fret {

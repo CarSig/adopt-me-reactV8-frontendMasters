@@ -20,13 +20,13 @@ const Fret = ({ fret, octave, stringNumber }) => {
             setinterval("root")
         }
         else if (chord?.notes?.length > 1) {
-            if (chord?.notes[1] || scale?.note[2]) {
+            if (chord?.notes[1] === fret.fretNote) {
                 setinterval("third")
-            } else if (chord?.notes[2] || scale?.note[4]) {
+            } else if (chord?.notes[2] === fret.fretNote) {
                 setinterval("fifth")
-            } else if (chord?.notes[3] || scale?.note[5]) {
+            } else if (chord?.notes[3] === fret.fretNote) {
                 setinterval("seventh")
-            } else if (chord?.notes[4] || scale?.note[7]) {
+            } else if (chord?.notes[4] === fret.fretNote) {
                 setinterval("ninth")
             }
         }
@@ -52,6 +52,7 @@ const Fret = ({ fret, octave, stringNumber }) => {
 
         setSelected(activeShape)
         // setSelected(activeNote)
+        setInterval(checkInterval())
 
     }, [selectorType, chord, scale, shape, shapeCoordinates])
 
@@ -68,7 +69,7 @@ const Fret = ({ fret, octave, stringNumber }) => {
         if (shapeCoordinates[stringNumber] === fret.fretNumber) {
             console.log("YEAH")
         }
-        console.log("root: ", root.toString(), " third: ", third.toString(), " fifth: ", fifth.toString())
+        console.log("root: ")
     }
 
 
@@ -89,21 +90,17 @@ const Fret = ({ fret, octave, stringNumber }) => {
 
 
         },
-        selected: {
-            backgroundColor: "fuchsia",
-            color: "white",
-            border: "1px solid black",
-        }
+
     }
 
-    const colors = third ? "green" : fifth ? "blue" : root ? "red" : null
+    const colors = interval === "third" ? "#448AFF" : interval === "fifth" ? "#009688" : interval === "root" ? "#7C4DFF" : null
 
     return (
 
 
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
         <div onClick={handleClick} style={styles.fret} className="fret">
-            <div className={`note ${selectorNote === fret.fretNote ? "note-selected" : null}`} style={{ backgroundColor: selected && "fuchsia", color: selected && "white" }}>
+            <div className={`note ${selectorNote === fret.fretNote ? "note-selected" : null}`} style={{ backgroundColor: selected && colors, color: selected && "white" }}>
                 {fret?.fretNote?.length < 2 ? fret.fretNote : fret.fretNote}
                 {octave}
             </div>
