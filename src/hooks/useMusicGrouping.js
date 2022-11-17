@@ -13,7 +13,9 @@ const useMusicGrouping = () => {
     }
 
     const handleChord = () => {
-        const notes = Chord[selectorChord](selectorNote)
+        console.log(selectorChord)
+        const notes = Chord[`${selectorChord}`](selectorNote)
+
         const name = selectorNote + " " + selectorChord;
         setChord({ name, notes });
     };

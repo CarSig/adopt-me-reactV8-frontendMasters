@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useContext, useEffect } from 'react'
 import useSound from 'use-sound'
-import Notes from '../components/SoundNote';
-// import COLOR_NOTE from '../constants/COLORS';
+
 import { useChordInterval } from '../hooks/useChordInterval';
 import { MusicContext } from '../Context/MusicContext'
 import { getIntervalColor } from '../functions/getIntervalColor';
@@ -11,8 +10,7 @@ import { playChord } from '../functions/playNotes';
 const Fret = ({ fret, octave, stringNumber }) => {
     const { shape, chord, scale, selectorType, selectorNote, shapeCoordinates } = useContext(MusicContext);
     const { selected, interval } = useChordInterval(fret, stringNumber);
-    const sound = fret?.fretNote?.length > 1 ? Notes[`${fret.fretNote.slice(0, 2)}`] : Notes[fret.fretNote];
-    const [playSound] = useSound(sound)
+
     const [playNote, setPlayNote] = useState([null, null, null, null, null, null])
 
     const selectPlayNote = (stringNumber) => {
