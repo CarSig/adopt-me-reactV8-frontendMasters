@@ -62,6 +62,13 @@ const AppReducer = (state, action) => {
                 ...state,
                 shapeCoordinates: action.payload
             }
+        case "SET_PLAY_NOTES": {
+            return {
+                ...state,
+                playNotes: action.payload
+            }
+        }
+
 
         default:
             return state;

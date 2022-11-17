@@ -3,7 +3,8 @@ import { getScale, getCAGEDshape, Chord } from "../musicTheory";
 import { MusicContext } from "../Context/MusicContext";
 
 const useMusicGrouping = () => {
-    const { setScale, selectorScale, selectorNote, setChord, selectorChord, selectorShape, setShapeCoordinates } = useContext(MusicContext);
+    const { setScale, selectorScale, selectorNote, setChord, selectorChord, selectorShape, setShapeCoordinates, playNotes, setPlayNotes } = useContext(MusicContext);
+
 
     const handleScale = () => {
         const notes = getScale(selectorNote, selectorScale);
@@ -21,6 +22,12 @@ const useMusicGrouping = () => {
     const handleShape = () => {
         const CAGEDshape = getCAGEDshape(selectorNote, selectorShape);
         setShapeCoordinates(CAGEDshape);
+        const notes = []
+        for (let note in CAGEDshape) {
+            notes.push(CAGEDshape[note])
+        }
+        setPlayNotes(notes)
+        // console.log(playNotes.reverse(), "s")
 
     }
     return { handleScale, handleChord, handleShape };

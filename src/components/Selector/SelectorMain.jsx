@@ -25,7 +25,7 @@ const SelectorMain = () => {
                 handleShape()
             }}>get Chord & Shape</button>
             <NoteSelector type={"chord"} />
-            {selectorType === "chord" && (
+            {selectorType === "shape" && (
                 <div>   <MultiSelector typeSetter={setSelectorChord} type={"chord"} typeInput={Chord} handleClick={handleChord} />
                     <MultiSelector typeSetter={setSelectorChord} type={"shape"} typeInput={CAGEDshapes} handleClick={handleShape} /> </div>
             )}

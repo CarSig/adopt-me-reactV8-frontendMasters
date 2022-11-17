@@ -12,6 +12,7 @@ const initialState = {
     selectorNote: "C",
     selectorShape: "C",
     shapeCoordinates: { 1: null, 2: null, 3: null, 4: null, 5: null, 6: null },
+    playNotes: [],
 
 
 
@@ -99,7 +100,12 @@ export const MusicContextProvider = ({ children }) => {
             payload: shapeCoordinates
         })
     }
-
+    function setPlayNotes(playNotes) {
+        dispatch({
+            type: "SET_PLAY_NOTES",
+            payload: playNotes
+        })
+    }
 
     return (
         <MusicContext.Provider value={{
@@ -126,7 +132,9 @@ export const MusicContextProvider = ({ children }) => {
             , selectorShape: state.selectorShape,
             setSelectorShape
             , shapeCoordinates: state.shapeCoordinates
-            , setShapeCoordinates
+            , setShapeCoordinates,
+            playNotes: state.playNotes,
+            setPlayNotes
 
 
         }}>{children}</MusicContext.Provider>

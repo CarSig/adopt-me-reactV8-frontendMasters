@@ -47,6 +47,7 @@ const Fret = ({ fret, octave, stringNumber }) => {
             width: `${fret.fretWidth * 3.4}rem`,
             fontWeight: `${fret?.fretNote?.length < 2 ? "bold" : "normal"}`,
             fontSize: `${fret?.fretNote?.length < 2 ? "1rem" : "0.8rem"}`,
+            cursor: "pointer",
         },
         note: {
             color: "black",
