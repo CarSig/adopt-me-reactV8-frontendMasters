@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { MusicContext } from "../Context/MusicContext";
 
 export const useChordInterval = ({ fretNote, fretNumber }, stringNumber) => {
-    const { chord, shape, scale, selectorType, selectorNote, shapeCoordinates } = useContext(MusicContext);
+    const { chord, shape, scale, note, selectorType, selectorNote, shapeCoordinates, selectorChord, selectorShape, selectorScale } = useContext(MusicContext);
     const [selected, setSelected] = useState(false);
     const [interval, setInterval] = useState("");
     const sharpNote = fretNote?.slice(0, 2);
@@ -44,13 +44,10 @@ export const useChordInterval = ({ fretNote, fretNumber }, stringNumber) => {
         setInterval(checkInterval)
 
 
-    }, [selectorType, chord, scale, shape, shapeCoordinates])
+    }, [selectorType, chord, scale, shape, note, selectorChord, selectorShape, selectorScale, shapeCoordinates])
 
     const colors = interval === "third" ? "#448AFF" : interval === "fifth" ? "#009688" : interval === "root" ? "#7C4DFF" : "orange"
-    if (fretNumber === 0) {
-        console.log("*****", fretNote, fretNumber, stringNumber)
-        console.log(colors)
-    }
+
 
     return { selected, interval, colors }
 

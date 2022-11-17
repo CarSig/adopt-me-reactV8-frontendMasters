@@ -25,6 +25,86 @@ export const CAGEDshapes = {
 }
 
 
+export const CAGED = {
+    C: { 6: { fret: null, interval: null }, 5: { fret: 3, interval: "3rd" }, 4: { fret: 2, interval: "2nd" }, 3: { fret: 0, interval: "root" }, 2: { fret: 1, interval: "4th" }, 1: { fret: 0, interval: "root" } },
+    A: {
+        6: {
+            fret: 0, interval: "root"
+        }, 5: {
+            fret: 2, interval: "2nd"
+        }, 4: {
+            fret: 2, interval: "2nd"
+        }, 3: {
+            fret: 2, interval: "2nd"
+        }, 2: {
+            fret: 0, interval: "root"
+        }, 1: {
+            fret: 0, interval: "root"
+        }
+    },
+    G: {
+        6: {
+            fret: 3, interval: "3rd"
+        }, 5: {
+            fret: 2, interval: "2nd"
+        }, 4: {
+            fret: 0, interval: "root"
+        }, 3: {
+            fret: 0, interval: "root"
+        }, 2: {
+            fret: 0, interval: "root"
+        }, 1: {
+            fret: 3, interval: "3rd"
+        }
+    },
+    E: {
+        6: {
+            fret: 0, interval: "root"
+        }, 5: {
+            fret: 2, interval: "2nd"
+        }, 4: {
+            fret: 2, interval: "2nd"
+        }, 3: {
+            fret: 1, interval: "4th"
+        }, 2: {
+            fret: 0, interval: "root"
+        }, 1: {
+            fret: 0, interval: "root"
+        }
+    },
+    D: {
+        6: {
+            fret: null, interval: null
+        }, 5: {
+            fret: null, interval: null
+        }, 4: {
+            fret: 0, interval: "root"
+        }, 3: {
+            fret: 2, interval: "2nd"
+        }, 2: {
+            fret: 3, interval: "3rd"
+        }, 1: {
+            fret: 2, interval: "2nd"
+        }
+    },
+}
+
+//! function that adjusts shape based on chord type
+const shapeFretsAdjustment = (shape, chordType) => {
+    const comparisionChord = [0, 4, 7, 11];
+    const givenChord = Triads[`${chordType}`];
+    for (let i = 0; i < comparisionChord.length; i++) {
+        if (comparisionChord[i] !== givenChord[i]) {
+            const difference = comparisionChord[i] - givenChord[i];
+            for (let j = 0; j < shape.length; j++) {
+                shape[j].fret += difference;
+            }
+        }
+    }
+}
+
+
+
 export const isNoteAlreadyInScale = (note, prevNote) => {
     const result = note.slice(0, 1) !== prevNote.slice(0, 1)
     return result
@@ -63,7 +143,6 @@ export const getCAGEDshape = (root, shape) => {
     const rootNote = root.slice(0, 2);
     const fretDelay = (fretDelays[rootNote] - fretDelays[shape] >= 0) ? fretDelays[rootNote] - fretDelays[shape] : 12 + fretDelays[rootNote] - fretDelays[shape];
     let stringShape = CAGEDshapes[`${shape}`]
-
     let finalShape = {}
 
     for (let guitarString in stringShape) {

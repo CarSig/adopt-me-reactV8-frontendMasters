@@ -15,7 +15,7 @@ const MultiSelector = ({ type, typeSetter, typeInput }) => {
                     }}
 
                 >
-                    <option disabled />
+
 
                     {Object.keys(typeInput).map((option) => (
                         <option key={option} className={type} value={option}>
