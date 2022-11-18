@@ -342,20 +342,24 @@ export const getChordShape = (root, chordType, shape) => {
 
     //get intervals for chordType from chordIntervals object
     const intervals = chordIntervals[chordType]
-    console.log(intervals)
+
     const majorIntervals = [0, 4, 7]
 
     let finalShape = {}
     for (let i in intervals) {
         for (let string in basicShape) {
-            if (intervals[i] != majorIntervals[i]) {
+            if (intervals[i] != majorIntervals[i] || chordType === "major") {
+
+
                 const intervalChange = intervals[i] - majorIntervals[i]
                 if (allNotesOnFretboardOf24Frets[string][basicShape[string]] === majorChordNotes[i]) {
                     const newFret = basicShape[string] + intervalChange
                     finalShape[string] = newFret
+                    console.log("newFret", newFret)
                 }
                 else {
                     finalShape[string] = basicShape[string]
+                    console.log("basicShape[string]", basicShape[string])
                 }
             }
         }

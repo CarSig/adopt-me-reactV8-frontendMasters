@@ -15,6 +15,9 @@ const Fretboard = () => {
     return (
         <div className='fretboard'>
             <button onClick={() => { playChord(playNotes) }}>play {selectorNote} {selectorChord} in {selectorShape} shape </button>
+            <button onClick={() => { playChord(playNotes.map(note => note + 12)) }}>play octave higher </button>
+
+
             <h2>chord:{chord.name} ---- {chord.notes}</h2>
             <h2>scale:{scale.name} ---- {scale.notes}</h2>
             <h2>shape:{JSON.stringify(shape.frets)} ---- chord {selectorNote} {selectorChord} in {selectorShape} shape --- {chord.notes}---note krivo</h2>
