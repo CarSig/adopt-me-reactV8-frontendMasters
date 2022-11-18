@@ -11,7 +11,7 @@ function pluck(frequency) {
 
 
     // N is the period of our signal in samples
-    const N = Math.round(context.sampleRate / frequency);
+    const N = Math.round(context.sampleRate / frequency * 1.25);
 
     // y is the signal presently
     const y = new Float32Array(N);
@@ -106,6 +106,7 @@ function mute() {
     dampening = 0.89;
 }
 
-export function playChord(frets) {
-    context.resume().then(strum(frets));
+export function playChord(frets, strings, speed) {
+    context.resume().then(strum(frets, strings, speed));
+    console.log(frets)
 }
