@@ -137,29 +137,6 @@ export const getScale = (note, scaleType) => {
 
 
 
-export const getCAGEDshape = (root, shape) => {
-    const fretDelays = { C: 0, "C#": 1, "D♭": 1, D: 2, "D#": 3, "E♭": 3, E: 4, F: 5, "F#": 6, "G♭": 6, G: 7, "G#": 8, "A♭": 8, A: 9, "A#": 10, "B♭": 10, B: 11 };
-    //remove accidental from root
-    const rootNote = root.slice(0, 2);
-    const fretDelay = (fretDelays[rootNote] - fretDelays[shape] >= 0) ? fretDelays[rootNote] - fretDelays[shape] : 12 + fretDelays[rootNote] - fretDelays[shape];
-    let stringShape = CAGEDshapes[`${shape}`]
-    let finalShape = {}
-
-    for (let guitarString in stringShape) {
-        // add fret delay to each string of the shape, unless the string is not played (null)
-        const activeFret = (stringShape[`${guitarString}`] !== null) ? stringShape[`${guitarString}`] + fretDelay : null
-        // overwrite the shape object with the new guitar string
-        finalShape = { ...finalShape, [guitarString]: activeFret }
-    }
-    console.log("finalShape", finalShape)
-
-
-    return finalShape
-
-
-}
-
-
 
 
 
@@ -173,34 +150,26 @@ export const Modes = {
     locrian: [0, 1, 3, 5, 6, 8, 10]
 }
 
-export const Triads = {
+
+
+const chordIntervals = {
     major: [0, 4, 7],
     minor: [0, 3, 7],
     diminished: [0, 3, 6],
     augmented: [0, 4, 8],
     sus2: [0, 2, 7],
     sus4: [0, 5, 7],
-
+    major7: [0, 4, 7, 11],
+    minor7: [0, 3, 7, 10],
+    dominant7: [0, 4, 7, 10],
+    diminished7: [0, 3, 6, 9],
+    augmented7: [0, 4, 8, 10],
+    major9: [0, 4, 7, 11, 14],
+    minor9: [0, 3, 7, 10, 14],
+    dominant9: [0, 4, 7, 10, 14],
+    diminished9: [0, 3, 6, 9, 13],
+    augmented9: [0, 4, 8, 10, 14],
 }
-
-export const SeventhChords = {
-    major: [0, 4, 7, 11],
-    minor: [0, 3, 7, 10],
-    dominant: [0, 4, 7, 10],
-    diminished: [0, 3, 6, 9],
-    augmented: [0, 4, 8, 10]
-}
-
-export const NinthChords = {
-    major: [0, 4, 7, 11, 14],
-    minor: [0, 3, 7, 10, 14],
-    dominant: [0, 4, 7, 10, 14],
-    diminished: [0, 3, 6, 9, 13],
-    augmented: [0, 4, 8, 10, 14],
-
-}
-
-
 
 
 
@@ -314,4 +283,86 @@ export const Scale = {
 // console.log(getChordName('C', 'E', 'G'));
 
 
+
+
+
+export const getCAGEDshape = (root, shape) => {
+    const fretDelays = { C: 0, "C#": 1, "D♭": 1, D: 2, "D#": 3, "E♭": 3, E: 4, F: 5, "F#": 6, "G♭": 6, G: 7, "G#": 8, "A♭": 8, A: 9, "A#": 10, "B♭": 10, B: 11 };
+    //remove accidental from root
+    const rootNote = root.slice(0, 2);
+    const fretDelay = (fretDelays[rootNote] - fretDelays[shape] >= 0) ? fretDelays[rootNote] - fretDelays[shape] : 12 + fretDelays[rootNote] - fretDelays[shape];
+    let stringShape = CAGEDshapes[`${shape}`]
+    let finalShape = {}
+
+    for (let guitarString in stringShape) {
+        // add fret delay to each string of the shape, unless the string is not played (null)
+        const activeFret = (stringShape[`${guitarString}`] !== null) ? stringShape[`${guitarString}`] + fretDelay : null
+        // overwrite the shape object with the new guitar string
+        finalShape = { ...finalShape, [guitarString]: activeFret }
+    }
+    console.log("finalShape", finalShape)
+
+
+    return finalShape
+
+
+}
+
+const allNotesOnFretboardOf24Frets = {
+    6: ["E", "F", "F#/G♭", "G", "G#/A♭", "A", "A#/B♭", "B", "C", "C#/D♭", "D", "D#/E♭", "E", "F", "F#/G♭", "G", "G#/A♭", "A", "A#/B♭", "B", "C", "C#/D♭", "D", "D#/E♭", "E"],
+    5: ["A", "A#/B♭", "B", "C", "C#/D♭", "D", "D#/E♭", "E", "F", "F#/G♭", "G", "G#/A♭", "A", "A#/B♭", "B", "C", "C#/D♭", "D", "D#/E♭", "E", "F", "F#/G♭", "G", "G#/A♭", "A"],
+    4: ["D", "D#/E♭", "E", "F", "F#/G♭", "G", "G#/A♭", "A", "A#/B♭", "B", "C", "C#/D♭", "D", "D#/E♭", "E", "F", "F#/G♭", "G", "G#/A♭", "A", "A#/B♭", "B", "C", "C#/D♭", "D"],
+    3: ["G", "G#/A♭", "A", "A#/B♭", "B", "C", "C#/D♭", "D", "D#/E♭", "E", "F", "F#/G♭", "G", "G#/A♭", "A", "A#/B♭", "B", "C", "C#/D♭", "D", "D#/E♭", "E", "F", "F#/G♭", "G"],
+    2: ["B", "C", "C#/D♭", "D", "D#/E♭", "E", "F", "F#/G♭", "G", "G#/A♭", "A", "A#/B♭", "B", "C", "C#/D♭", "D", "D#/E♭", "E", "F", "F#/G♭", "G", "G#/A♭", "A", "A#/B♭", "B"],
+    1: ["E", "F", "F#/G♭", "G", "G#/A♭", "A", "A#/B♭", "B", "C", "C#/D♭", "D", "D#/E♭", "E", "F", "F#/G♭", "G", "G#/A♭", "A", "A#/B♭", "B", "C", "C#/D♭", "D", "D#/E♭", "E"],
+
+
+}
+
+
+
+
+const getChordShape = (root, chordType, shape) => {
+    const chordNotes = Chord[chordType](root);
+    const majorChordNotes = Chord.major(root);
+    const fretDelays = { C: 0, "C#": 1, "D♭": 1, D: 2, "D#": 3, "E♭": 3, E: 4, F: 5, "F#": 6, "G♭": 6, G: 7, "G#": 8, "A♭": 8, A: 9, "A#": 10, "B♭": 10, B: 11 };
+
+    //remove accidental from root
+    const rootNote = root.slice(0, 2);
+    const fretDelay = (fretDelays[rootNote] - fretDelays[shape] >= 0) ? fretDelays[rootNote] - fretDelays[shape] : 12 + fretDelays[rootNote] - fretDelays[shape];
+
+    let stringShape = CAGEDshapes[`${shape}`]
+    let basicShape = {}
+    for (let guitarString in stringShape) {
+        // add fret delay to each string of the shape, unless the string is not played (null)
+        const activeFret = (stringShape[`${guitarString}`] !== null) ? stringShape[`${guitarString}`] + fretDelay : null
+        // overwrite the shape object with the new guitar string
+        basicShape = { ...basicShape, [guitarString]: activeFret }
+    }
+
+    //get intervals for chordType from chordIntervals object
+    const intervals = chordIntervals[chordType]
+    console.log(intervals)
+    const majorIntervals = [0, 4, 7]
+
+    let finalShape = {}
+    for (let i in intervals) {
+        for (let string in basicShape) {
+            if (intervals[i] != majorIntervals[i]) {
+                const intervalChange = intervals[i] - majorIntervals[i]
+                if (allNotesOnFretboardOf24Frets[string][basicShape[string]] === majorChordNotes[i]) {
+                    const newFret = basicShape[string] + intervalChange
+                    finalShape[string] = newFret
+                }
+                else {
+                    finalShape[string] = basicShape[string]
+                }
+            }
+        }
+    }
+    return finalShape
+    // return { chordNotes,  finalShape }
+}
+console.log(getChordShape("C", "diminished", "A"))
+console.log(getCAGEDshape("C", "A"))
 

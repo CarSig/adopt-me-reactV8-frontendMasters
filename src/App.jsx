@@ -22,28 +22,28 @@ const queryClient = new QueryClient({
 const App = () => {
 
   return (
-    <React.StrictMode>
-      <div>
+
+    <div>
 
 
-        <BrowserRouter>
-          <MusicContextProvider value={MusicContext}>
-            <QueryClientProvider client={queryClient}>
-              <header>
-                <Link to="/"><h1>Guitar</h1></Link>
-              </header>
-              <SelectorMain />
+      <BrowserRouter>
+        <MusicContextProvider value={MusicContext}>
+          <QueryClientProvider client={queryClient}>
+            <header>
+              <Link to="/"><h1>Guitar</h1></Link>
+            </header>
+            <SelectorMain />
 
 
-              <Routes>
-                <Route path="/details/:id" element={<Fret />} />
-                <Route path="/" element={<Fretboard />} />
-              </Routes>
-            </QueryClientProvider>
-          </MusicContextProvider>
-        </BrowserRouter>
-      </div >
-    </React.StrictMode>
+            <Routes>
+              <Route path="/details/:id" element={<Fret />} />
+              <Route path="/" element={<Fretboard />} />
+            </Routes>
+          </QueryClientProvider>
+        </MusicContextProvider>
+      </BrowserRouter>
+    </div >
+
   );
 };
 
