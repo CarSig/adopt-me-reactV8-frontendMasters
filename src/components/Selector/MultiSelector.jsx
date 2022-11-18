@@ -12,6 +12,7 @@ const MultiSelector = ({ type, typeSetter, typeInput }) => {
                     name={type}
                     onChange={(e) => {
                         typeSetter(e.target.value);
+
                     }}
 
                 >

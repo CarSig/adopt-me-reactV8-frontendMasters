@@ -21,13 +21,13 @@ const SelectorMain = () => {
     return (
         <div className='selectorMain'>
             <button className="btn btn-select" onClick={() => {
-                handleChord()
+                // handleChord()
                 handleShape()
             }}>get Chord & Shape</button>
             <NoteSelector type={"chord"} />
             {selectorType === "shape" && (
                 <div>   <MultiSelector typeSetter={setSelectorChord} type={"chord"} typeInput={Chord} handleClick={handleChord} />
-                    <MultiSelector typeSetter={setSelectorChord} type={"shape"} typeInput={CAGEDshapes} handleClick={handleShape} /> </div>
+                    <MultiSelector typeSetter={setSelectorShape} type={"shape"} typeInput={CAGEDshapes} handleClick={handleShape} /> </div>
             )}
             {selectorType === "scale" && (
                 <div>            <MultiSelector typeSetter={setSelectorScale} type={"scale"} typeInput={Scale} handleClick={handleScale} />

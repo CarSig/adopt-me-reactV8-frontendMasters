@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { getScale, getCAGEDshape, Chord } from "../musicTheory";
+import { getScale, getCAGEDshape, Chord, getChordShape } from "../musicTheory";
 import { MusicContext } from "../Context/MusicContext";
 
 const useMusicGrouping = () => {
@@ -13,7 +13,7 @@ const useMusicGrouping = () => {
     }
 
     const handleChord = () => {
-        console.log(selectorChord)
+
         const notes = Chord[`${selectorChord}`](selectorNote)
 
         const name = selectorNote + " " + selectorChord;
@@ -22,7 +22,8 @@ const useMusicGrouping = () => {
 
 
     const handleShape = () => {
-        const CAGEDshape = getCAGEDshape(selectorNote, selectorShape);
+        // const CAGEDshape = getCAGEDshape(selectorNote, selectorShape);
+        const CAGEDshape = getChordShape(selectorNote, selectorChord, selectorShape);
         setShapeCoordinates(CAGEDshape);
         const notes = []
         for (let note in CAGEDshape) {
