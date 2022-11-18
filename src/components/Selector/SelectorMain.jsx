@@ -23,7 +23,7 @@ const SelectorMain = () => {
             <button className="btn btn-select" onClick={() => {
                 // handleChord()
                 handleShape()
-            }}>get Chord & Shape</button>
+            }}>get Chord</button>
             <NoteSelector type={"chord"} />
             {selectorType === "shape" && (
                 <div>   <MultiSelector typeSetter={setSelectorChord} type={"chord"} typeInput={Chord} handleClick={handleChord} />
@@ -34,9 +34,11 @@ const SelectorMain = () => {
                 </div>
             )}
 
-            {getButton("chord")}
-            {getButton("scale")}
-            {getButton("shape")}
+            {
+                // {getButton("chord")}
+                // {getButton("scale")}
+                // {getButton("shape")}
+            }
             {
                 //             {selectorType === "scale" && <SelectorCombo typeSetter={setSelectorScale} type="scale" typeInput={Scale} handleClick={handleScale} />}
                 //             {selectorType === "chord" && <SelectorCombo typeSetter={setSelectorChord} type="chord" typeInput={Chord} handleClick={handleChord} />}

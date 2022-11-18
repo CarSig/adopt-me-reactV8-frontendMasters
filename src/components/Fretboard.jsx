@@ -20,8 +20,9 @@ const Fretboard = () => {
     }
     return (
         <div className='fretboard'>
-            <button onClick={() => { playChord(playNotes, 6, delay) }}>play {selectorNote} {selectorChord} in {selectorShape} shape </button>
-            <button onClick={() => { playChord(playNotes.map(note => note + 12)) }}>play octave higher </button>
+            <h2>{selectorNote} {selectorChord} in {selectorShape} shape </h2>
+            <button onClick={() => { playChord(playNotes, 6, delay) }}>play lower octave </button>
+            <button onClick={() => { playChord(playNotes.map(note => note + 12), 6, delay) }}>play higher octave </button>
             <div >
                 <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "150px" }}>
                     <label htmlFor="speed">delay</label>
