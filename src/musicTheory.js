@@ -1,4 +1,8 @@
 
+
+
+
+
 export const CHROMATIC_SCALE = ['C', 'C#/D♭', 'D', 'D#/E♭', 'E', 'F', 'F#/G♭', 'G', 'G#/A♭', 'A', 'A#/B♭', 'B'];
 
 export const SCALE_INTERVALS = {

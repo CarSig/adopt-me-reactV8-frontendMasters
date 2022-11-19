@@ -45,14 +45,15 @@ const Fretboard = () => {
 
 
 
+            <div className='guitar-neck'>
+                {
+                    tuning.reverse().map((note => {
+                        thickness.current = tuning.indexOf(note) + 1;
 
-            {
-                tuning.reverse().map((note => {
-                    thickness.current = tuning.indexOf(note) + 1;
-
-                    return <GuitarString key={note} note={note} thickness={JSON.stringify(thickness.current)} />
-                }))
-            }
+                        return <GuitarString key={note} note={note} thickness={JSON.stringify(thickness.current)} />
+                    }))
+                }
+            </div>
 
 
         </div >

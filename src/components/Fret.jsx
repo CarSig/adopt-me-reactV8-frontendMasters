@@ -6,6 +6,7 @@ import { useChordInterval } from '../hooks/useChordInterval';
 import { MusicContext } from '../Context/MusicContext'
 import { getIntervalColor } from '../functions/getIntervalColor';
 import { playChord } from '../functions/playNotes';
+import { usePlayNote } from '../hooks/usePlayNote';
 
 const Fret = ({ fret, octave, stringNumber }) => {
     const { shape, chord, scale, selectorType, selectorNote, shapeCoordinates } = useContext(MusicContext);
@@ -22,6 +23,8 @@ const Fret = ({ fret, octave, stringNumber }) => {
         })
         return newPlayNotes.reverse()
     }
+    // const noteToPlay = usePlayNote(stringNumber, fret)
+
 
     const handleClick = () => {
 
@@ -29,13 +32,13 @@ const Fret = ({ fret, octave, stringNumber }) => {
 
         // playSound()
         playChord(selectPlayNote(stringNumber))
+        // playChord(noteToPlay)
         console.log(shapeCoordinates)
         console.log("key: ", shapeCoordinates[stringNumber], " value: ", stringNumber, " pressed: ", fret.fretNumber)
         if (shapeCoordinates[stringNumber] === fret.fretNumber) {
             console.log("YEAH")
         }
-        console.log("root: ")
-        console.log("colors: ", colors)
+
         console.log("interval: ", interval)
     }
 

@@ -122,10 +122,12 @@ button {
   padding: 10px;
   box-sizing: border-box;
 }
+.guitar-neck {
+  background-color: rgb(194, 131, 59);
+  background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+}
 
 .fret {
-  background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
-  background-color: rgb(194, 131, 59);
   display: flex;
   flex-direction: row;
   justify-content: space-between;

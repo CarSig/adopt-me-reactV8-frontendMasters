@@ -4,6 +4,7 @@ import getFrets from '../functions/getFrets'
 import { MusicContext } from '../Context/MusicContext';
 import { getIntervalColor } from '../functions/getIntervalColor';
 import { useChordInterval } from '../hooks/useChordInterval';
+import { playChord } from '../functions/playNotes';
 
 const GuitarString = ({ note, thickness }) => {
     const emptyString = { fretNote: note.toUpperCase(), fretNumber: 0 }
@@ -18,10 +19,21 @@ const GuitarString = ({ note, thickness }) => {
         setEmptyStringNote(shapeCoordinates[`${thickness}`])
     }, [shapeCoordinates])
 
+    const selectPlayNote = (stringNumber) => {
+        const newPlayNotes = playNote.map((note, index) => {
+            if (index === stringNumber - 1) {
+                return fret.fretNumber
+            }
+            return note
+        })
+        return newPlayNotes.reverse()
+    }
 
 
-
-
+    const handleClick = () => {
+        playChord(selectPlayNote(thickness))
+        console.log(thickness)
+    }
 
     return (
         <div style={{
@@ -37,7 +49,8 @@ const GuitarString = ({ note, thickness }) => {
                 justifyText: "center",
                 textAlign: "center",
                 cursor: "pointer",
-            }}>{note}  {thickness}   </div>
+            }}
+                onClick={handleClick}>{note}  {thickness}   </div>
 
 
             {
