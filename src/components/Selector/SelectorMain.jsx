@@ -1,16 +1,18 @@
-import React, { useContext } from 'react'
-import { Chord, Scale, CAGEDshapes } from "../../musicTheory";
+import React, { useContext, useState } from 'react'
+import { Chord, Scale, CAGEDshapes, getChordShape } from "../../musicTheory";
 import useMusicGrouping from '../../hooks/useMusicGrouping';
 import { MusicContext } from '../../Context/MusicContext';
 import NoteSelector from './NoteSelector'
 import MultiSelector from './MultiSelector'
 import ChordSelector from './ChordSelector'
 
+
 const SelectorMain = () => {
     const { handleChord, handleScale, handleShape } = useMusicGrouping();
-    const { selectorType, setSelectorType, setSelectorChord, setSelectorScale, setSelectorShape } = useContext(MusicContext)
 
+    const { selectorType, setSelectorType, setSelectorChord, setSelectorScale, setSelectorShape, selectorNote } = useContext(MusicContext)
 
+    const [song, setSong] = useState([]);
 
     const getButton = (selected) => {
         return (
@@ -25,14 +27,18 @@ const SelectorMain = () => {
                 handleShape()
             }}>get Chord</button>
             <NoteSelector type={"chord"} />
-            {selectorType === "shape" && (
-                <div>   <MultiSelector typeSetter={setSelectorChord} type={"chord"} typeInput={Chord} handleClick={handleChord} getChord={handleShape} />
-                    <MultiSelector typeSetter={setSelectorShape} type={"shape"} typeInput={CAGEDshapes} handleClick={handleShape} getChord={handleShape} /> </div>
-            )}
-            {selectorType === "scale" && (
-                <div>            <MultiSelector typeSetter={setSelectorScale} type={"scale"} typeInput={Scale} handleClick={handleScale} />
-                </div>
-            )}
+            {
+                selectorType === "shape" && (
+                    <div>   <MultiSelector typeSetter={setSelectorChord} type={"chord"} typeInput={Chord} handleClick={handleChord} getChord={handleShape} />
+                        <MultiSelector typeSetter={setSelectorShape} type={"shape"} typeInput={CAGEDshapes} handleClick={handleShape} getChord={handleShape} /> </div>
+                )
+            }
+            {
+                selectorType === "scale" && (
+                    <div>            <MultiSelector typeSetter={setSelectorScale} type={"scale"} typeInput={Scale} handleClick={handleScale} />
+                    </div>
+                )
+            }
 
             {
                 // {getButton("chord")}

@@ -1,6 +1,8 @@
 import React from 'react'
+import { ThemeContext } from '../../Context/ThemeContext'
 
 const MultiSelector = ({ type, typeSetter, typeInput }) => {
+    const { primaryColor, secondaryColor } = React.useContext(ThemeContext)
     const defaultValue = typeInput === "shape" ? "C" : " major"
 
     return (
@@ -14,12 +16,12 @@ const MultiSelector = ({ type, typeSetter, typeInput }) => {
                         typeSetter(e.target.value);
 
                     }}
+                    style={{ backgroundColor: primaryColor }}>
 
-                >
 
 
                     {Object.keys(typeInput).map((option) => (
-                        <option key={option} className={type} value={option}>
+                        <option key={option} className={type} value={option} style={{ backgroundColor: secondaryColor }}>
                             {option}
 
                         </option>

@@ -269,25 +269,6 @@ export const Scale = {
 
 
 
-// input any number of notes and get the name of the chord
-// export const getChordName = (...notes) => {
-//     const root = notes[0];
-//     const intervals = notes.map(note => {
-//         return CHROMATIC_SCALE.indexOf(note) - CHROMATIC_SCALE.indexOf(root);
-//     });
-//     const chord = CHORDS.find(chord => {
-//         return chord.intervals.every(interval => {
-//             return intervals.includes(interval);
-//         });
-//     });
-//     return chord ? chord.name : 'Unknown';
-// }
-
-
-// console.log(getChordName('C', 'E', 'G'));
-
-
-
 
 
 export const getCAGEDshape = (root, shape) => {
@@ -327,7 +308,7 @@ const allNotesOnFretboardOf24Frets = {
 
 
 export const getChordShape = (root, chordType, shape) => {
-    const chordNotes = Chord[chordType](root);
+    // const chordNotes = Chord[chordType](root);
     const majorChordNotes = Chord.major(root);
     const fretDelays = { C: 0, "C#": 1, "D♭": 1, D: 2, "D#": 3, "E♭": 3, E: 4, F: 5, "F#": 6, "G♭": 6, G: 7, "G#": 8, "A♭": 8, A: 9, "A#": 10, "B♭": 10, B: 11 };
 
@@ -359,11 +340,11 @@ export const getChordShape = (root, chordType, shape) => {
                 if (allNotesOnFretboardOf24Frets[string][basicShape[string]] === majorChordNotes[i]) {
                     const newFret = basicShape[string] + intervalChange
                     finalShape[string] = newFret
-                    console.log("newFret", newFret)
+
                 }
                 else {
                     finalShape[string] = basicShape[string]
-                    console.log("basicShape[string]", basicShape[string])
+
                 }
             }
         }
@@ -371,6 +352,5 @@ export const getChordShape = (root, chordType, shape) => {
     return finalShape
     // return { chordNotes,  finalShape }
 }
-console.log(getChordShape("C", "diminished", "A"))
-console.log(getCAGEDshape("C", "A"))
+
 

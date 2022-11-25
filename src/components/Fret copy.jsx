@@ -97,12 +97,12 @@ const Fret = ({ fret, octave, stringNumber }) => {
 
 
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-        <div onClick={handleClick} style={styles.fret} className="fret">
-            <div className={`note ${selectorNote === fret.fretNote ? "note-selected" : null}`} style={{ backgroundColor: selected && colors, color: selected && "white" }}>
+        <div-fret onClick={handleClick} style={styles.fret} className="fret">
+            <div-note className={`note ${selectorNote === fret.fretNote ? "note-selected" : null}`} style={{ backgroundColor: selected && colors, color: selected && "white" }}>
                 {fret?.fretNote?.length < 2 ? fret.fretNote : fret.fretNote}
                 {octave}
-            </div>
-        </div>
+            </div-note>
+        </div-fret>
 
 
     )

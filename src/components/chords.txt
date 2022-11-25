@@ -1,0 +1,47 @@
+F major
+F minor
+F5
+F dominant 7th
+F major 7th
+F minor 7th
+F minor major 7th
+F suspended 4th
+F suspended 2nd
+F6
+F minor major 6
+F9
+F minor 9
+F minor major 9
+F11
+F minor 11
+F major 11
+F minor major 11
+F major add 9
+F minor add 9
+F6 add 9
+F minor 6 add 9
+F dominant 7th add 11
+F major 7th add 11
+F minor 7th add 11
+F minor major 7th add 11
+F dominant 7th add 13
+F major 7th add 13
+F minor 7th add 13
+F minor major 7th add 13
+F dominant 7th flat 5
+F augmented
+F augmented 7th
+F dominant 7th flat 9th
+F dominant 7th sharp 9th
+F augmented 7th flat 9th
+F minor 7th flat 5
+F minor 7th sharp 5
+F minor 7th flat 9th
+F6 suspended 4th
+F6 suspended 2nd
+F dominant 7th suspended 4th
+F dominant 7th suspended 2nd
+F major 7th suspended 4th
+F major 7th suspended 2nd
+F diminished
+F diminished 7th
