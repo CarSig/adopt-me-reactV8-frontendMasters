@@ -75,27 +75,51 @@ export const getMonochromaticColors = (color) => {
     return colors;
 }
 
-export const themeAnalogue = (color) => {
-    const primary = hexToHSL(color);
-    const secondary = { h: primary.h + 180, s: primary.s, l: primary.l };
-    const tertiary = { h: primary.h + 90, s: primary.s, l: primary.l };
-    const quaternary = { h: primary.h + 270, s: primary.s, l: primary.l };
-    const quinary = { h: primary.h + 45, s: primary.s, l: primary.l };
-    const bg = { h: primary.h + 180, s: primary.s, l: primary.l };
-    const bg2 = { h: primary.h + 180, s: primary.s, l: primary.l };
-    const text = { h: primary.h + 180, s: primary.s, l: primary.l };
-    const text2 = { h: primary.h + 180, s: primary.s, l: primary.l };
-    return {
-        primaryColor: hslToHex(primary.h, primary.s, primary.l),
-        secondaryColor: hslToHex(secondary.h, secondary.s, secondary.l),
-        tertiaryColor: hslToHex(tertiary.h, tertiary.s, tertiary.l),
-        quaternaryColor: hslToHex(quaternary.h, quaternary.s, quaternary.l),
-        quinaryColor: hslToHex(quinary.h, quinary.s, quinary.l),
-        backgroundColor: hslToHex(bg.h, bg.s, bg.l),
-        backgroundColor2: hslToHex(bg2.h, bg2.s, bg2.l),
-        textColor: hslToHex(text.h, text.s, text.l),
-        textColor2: hslToHex(text2.h, text2.s, text2.l),
+const themes = {
+    monochromeIncrement: { h: 0, l: 5, s: 5 },
+
+
+
+}
+
+
+export const getTheme = (color, theme = 30) => {
+    const colorNames = ["primary", "secondary", "tertiary", "quaternary", "quinary"]
+    let modifier = { h: 0, l: 0, s: 0 }
+    // h = hue - 360 degrees , resets once gets 360
+    // l = lightness  - percentage, max 100
+    // saturation = percentage, max 100
+
+    let increment = { h: 160, l: 5, s: 5 }
+    let primary = hexToHSL(color)
+
+    const hslTheme = {};
+
+    for (let color in colorNames) {
+        console.log(colorNames[color])
+        hslTheme[colorNames[color]] = { h: primary.h + modifier.h, s: primary.s + modifier.s, l: primary.l + modifier.l };
+        modifier.h += increment.h;
+        modifier.s = increment.s * increment.s
+        modifier.l = increment.l
     }
+
+
+
+    const hexTheme = {};
+    for (let key in hslTheme) {
+        hexTheme[key] = hslToHex(hslTheme[key].h, hslTheme[key].s, hslTheme[key].l);
+    }
+
+
+    console.log(hexTheme)
+    return hexTheme;
+
+
+
+
+
+
+
 }
 
 
