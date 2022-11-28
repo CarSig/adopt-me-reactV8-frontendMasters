@@ -8,7 +8,7 @@ import Fret from "./components/Fret";
 import Fretboard from "./components/Fretboard";
 import SelectorMain from "./components/Selector/SelectorMain";
 import React from "react";
-import Circle from "./components/CircleOfFifths/Circle";
+
 
 
 

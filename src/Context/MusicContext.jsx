@@ -2,7 +2,7 @@ import { createContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
 
 const initialState = {
-    note: "",
+    note: "G",
     chord: "",
     scale: "",
     shape: "",

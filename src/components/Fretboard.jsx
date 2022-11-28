@@ -25,18 +25,18 @@ const Fretboard = () => {
 
 
 
-            <h2>{selectorNote} {selectorChord} in {selectorShape} shape </h2>
+
             <button style={{ backgroundColor: primaryColor }} onClick={() => { playChord(playNotes, 6, delay) }}>play lower octave </button>
             <button style={{ backgroundColor: secondaryColor }} onClick={() => { playChord(playNotes.map(note => note + 12), 6, delay) }}>play higher octave </button>
             <Slider delay={delay} setDelay={setDelay} />
             {
-
+                //            <h2>{selectorNote} {selectorChord} in {selectorShape} shape </h2>
+                // <h2>chord:{chord.name} ---- {chord.notes}</h2>
+                // <h2>scale:{scale.name} ---- {scale.notes}</h2>
+                // <h2>shape:{JSON.stringify(shape.frets)} ---- chord {selectorNote} {selectorChord} in {selectorShape} shape --- {chord.notes}</h2>
 
 
             }
-            <h2>chord:{chord.name} ---- {chord.notes}</h2>
-            <h2>scale:{scale.name} ---- {scale.notes}</h2>
-            <h2>shape:{JSON.stringify(shape.frets)} ---- chord {selectorNote} {selectorChord} in {selectorShape} shape --- {chord.notes}</h2>
 
 
 
