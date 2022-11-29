@@ -7,6 +7,8 @@ body {
   background-color: #fff;
   margin: 0;
   padding: 0;
+  height: 100vh;
+  width: 100vw;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -90,24 +92,20 @@ button {
   flex-direction: column;
 }
 
-.scale select {
-  background-color: rgb(124, 192, 141);
-}
-.chord select {
-  background-color: rgb(102, 87, 190);
-}
-.shape select {
-  background-color: rgba(110, 89, 49, 0.904);
-}
-
+.chord select,
 .chord-scale-selector option,
 .note-selector option {
-  background-color: #444;
+  background-color: #555;
   color: white;
 }
 
+.chord-scale-selector option:last-child {
+  border-radius: 0 0 10px 10px;
+  background-color: red;
+}
+
 .fretboard {
-  display: block;
+  /* display: block; */
   /* margin-left: 50px; */
   margin: 2% auto;
   width: 96%;
@@ -123,8 +121,10 @@ button {
   box-sizing: border-box;
 }
 .guitar-neck {
-  background-color: rgb(194, 131, 59);
-  background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+  background-color: #333;
+  /* background-color: rgb(194, 131, 59);
+
+  background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png"); */
 }
 
 .fret {
@@ -150,6 +150,7 @@ button {
   justify-content: center;
   align-items: center;
   text-align: center;
+  color: #aaa;
 }
 
 .note-selected {

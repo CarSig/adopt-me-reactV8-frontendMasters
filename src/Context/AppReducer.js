@@ -68,6 +68,12 @@ const AppReducer = (state, action) => {
                 playNotes: action.payload
             }
         }
+        case "SET_ACCIDENTAL": {
+            return {
+                ...state,
+                accidental: action.payload
+            }
+        }
 
 
         default:

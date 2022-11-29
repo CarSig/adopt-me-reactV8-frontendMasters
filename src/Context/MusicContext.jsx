@@ -2,10 +2,10 @@ import { createContext, useReducer } from "react";
 import AppReducer from "./AppReducer";
 
 const initialState = {
-    note: "G",
-    chord: "",
-    scale: "",
-    shape: "",
+    note: "C",
+    chord: "major",
+    scale: "major",
+    shape: "C",
     selectorType: "shape",
     selectorChord: "major",
     selectorScale: "major",
@@ -13,6 +13,7 @@ const initialState = {
     selectorShape: "C",
     shapeCoordinates: { 1: null, 2: null, 3: null, 4: null, 5: null, 6: null },
     playNotes: [],
+    accidental: "sharp",
 
 
 
@@ -105,8 +106,14 @@ export const MusicContextProvider = ({ children }) => {
             type: "SET_PLAY_NOTES",
             payload: playNotes
         })
-    }
 
+    }
+    function setAccidental(accidental) {
+        dispatch({
+            type: "SET_ACCIDENTAL",
+            payload: accidental
+        })
+    }
     return (
         <MusicContext.Provider value={{
             chord: state.chord,
@@ -134,7 +141,8 @@ export const MusicContextProvider = ({ children }) => {
             , shapeCoordinates: state.shapeCoordinates
             , setShapeCoordinates,
             playNotes: state.playNotes,
-            setPlayNotes
+            setPlayNotes, accidental: state.accidental,
+            setAccidental
 
 
         }}>{children}</MusicContext.Provider>

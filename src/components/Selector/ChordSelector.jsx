@@ -1,15 +1,7 @@
 import React, { useContext } from 'react'
-import { Chord, CAGEDshapes } from "../../musicTheory";
+import { Chord } from "../../musicTheory";
 import useMusicGrouping from '../../hooks/useMusicGrouping';
 import { MusicContext } from '../../Context/MusicContext';
-
-
-
-import NoteSelector from './NoteSelector'
-import MultiSelector from './MultiSelector'
-
-
-
 
 
 
@@ -17,9 +9,16 @@ import MultiSelector from './MultiSelector'
 
 
 const ChordSelector = ({ type }) => {
-    const { handleScale, handleChord, handleShape } = useMusicGrouping();
-    const defaultValue = " major"
-    const { setSelectorChord, chord, setSelectorShape } = useContext(MusicContext)
+    const { handleChord, handleShape } = useMusicGrouping();
+    const defaultValue = "major"
+    const { setSelectorChord } = useContext(MusicContext)
+
+    const handleClick = (e) => {
+        setSelectorChord(e.target.value)
+        handleChord()
+        handleShape()
+    }
+
 
     return (
         <div className={`chord-scale-selector ${type}`} >
@@ -28,15 +27,7 @@ const ChordSelector = ({ type }) => {
                 <select className={type} defaultValue={defaultValue}
                     id={type}
                     name={type}
-                    onChange={(e) => {
-                        setSelectorChord(e.target.value);
-                        console.log(e.target.value)
-                        handleChord()
-                        console.log(chord)
-
-                    }}
-
-                >
+                    onChange={(e) => { handleClick(e) }}>
                     <option disabled />
 
                     {Object.keys(Chord).map((option) => (

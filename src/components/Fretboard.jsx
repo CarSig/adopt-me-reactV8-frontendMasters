@@ -16,12 +16,26 @@ const Fretboard = () => {
     const [delay, setDelay] = useState(125);
 
 
+    const mapFretNumbers = () => {
+        let fret = 0
+        let arr = []
+        while (fret < 24) {
+            fret++
+            const num = <p style={{ color: "#333" }}>{fret}</p>
+            arr.push(num)
+
+        }
+        return arr
+    }
+
 
     return (
         <div className='fretboard'>
 
+            {
 
-            <ColorTest />
+                // <ColorTest />
+            }
 
 
 
@@ -39,7 +53,9 @@ const Fretboard = () => {
             }
 
 
-
+            <div className="fretNumbers" style={{ display: "flex", justifyContent: "space-around" }}>
+                {mapFretNumbers()}
+            </div>
 
 
             <div className='guitar-neck'>

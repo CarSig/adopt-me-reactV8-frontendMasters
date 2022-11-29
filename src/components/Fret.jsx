@@ -9,7 +9,7 @@ import { playChord } from '../functions/playNotes';
 import { usePlayNote } from '../hooks/usePlayNote';
 
 const Fret = ({ fret, octave, stringNumber }) => {
-    const { shape, chord, scale, selectorType, selectorNote, shapeCoordinates } = useContext(MusicContext);
+    const { accidental, shape, chord, scale, selectorType, selectorNote, shapeCoordinates } = useContext(MusicContext);
     const { selected, interval } = useChordInterval(fret, stringNumber);
 
     const [playNote, setPlayNote] = useState([null, null, null, null, null, null])
@@ -58,6 +58,8 @@ const Fret = ({ fret, octave, stringNumber }) => {
     }
 
     const colors = getIntervalColor(interval)
+    const formatedNote = accidental === "sharp" ? fret.fretNote?.slice(0, 2) : fret.fretNote?.slice(3, 5)
+
 
     return (
 
@@ -66,7 +68,7 @@ const Fret = ({ fret, octave, stringNumber }) => {
 
         <div onClick={handleClick} style={styles.fret} className="fret">
             <div className={`note ${selectorNote === fret.fretNote ? "note-selected" : null}`} style={{ backgroundColor: selected && colors, color: selected && "white" }}>
-                {fret?.fretNote?.length < 2 ? fret.fretNote : fret.fretNote}
+                {fret?.fretNote?.length < 2 ? fret.fretNote : formatedNote}
                 {octave}
 
             </div>
