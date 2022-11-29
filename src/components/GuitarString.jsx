@@ -2,7 +2,6 @@ import React, { useRef, useContext, useState, useEffect } from 'react'
 import Fret from './Fret'
 import getFrets from '../functions/getFrets'
 import { MusicContext } from '../Context/MusicContext';
-import { getIntervalColor } from '../functions/getIntervalColor';
 import { useChordInterval } from '../hooks/useChordInterval';
 import { playChord } from '../functions/playNotes';
 
@@ -10,8 +9,8 @@ const GuitarString = ({ note, thickness }) => {
     const emptyString = { fretNote: note.toUpperCase(), fretNumber: 0 }
 
 
-    const { selected, interval, colors } = useChordInterval(emptyString, thickness);
-    const { shapeCoordinates, chord, selectorNote } = useContext(MusicContext);
+    const { colors } = useChordInterval(emptyString, thickness);
+    const { shapeCoordinates } = useContext(MusicContext);
     const startOctave = thickness < 2 ? 3 : thickness < 4 ? 2 : 1;
     const octave = useRef(startOctave);
     const [emptyStringNote, setEmptyStringNote] = useState("")
@@ -22,7 +21,7 @@ const GuitarString = ({ note, thickness }) => {
     const selectPlayNote = (stringNumber) => {
         const newPlayNotes = playNote.map((note, index) => {
             if (index === stringNumber - 1) {
-                return fret.fretNumber
+                return Fret.fretNumber
             }
             return note
         })

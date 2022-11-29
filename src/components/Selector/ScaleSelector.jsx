@@ -34,7 +34,10 @@ const ScaleSelector = () => {
                         </option>
                     ))}
                 </select>
+
             </label>
+
+            <button>get MODAL</button>
         </div >
     )
 }

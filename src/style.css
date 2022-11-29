@@ -99,9 +99,9 @@ button {
   color: white;
 }
 
-.chord-scale-selector option:last-child {
-  border-radius: 0 0 10px 10px;
-  background-color: red;
+.chord-scale-selector option:hover {
+  background-color: #666;
+  color: white;
 }
 
 .fretboard {
