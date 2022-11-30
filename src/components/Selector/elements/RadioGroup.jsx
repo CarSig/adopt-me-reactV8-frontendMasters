@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyledRadioGroup } from '../../../assets/styles/Selector.style'
+import { StyledRadioGroup } from '../../../components/styles/Selector.style'
 
 
 

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { ThemeContext } from '../../Context/ThemeContext'
 import { MusicContext } from '../../Context/MusicContext';
 import useMusicGrouping from '../../hooks/useMusicGrouping';
-import { StyledContainer } from '../../assets/styles/Container.style';
+import { StyledContainer } from '../../components/styles/Container.style';
 import styled from 'styled-components'
 
 const StyledShapeSelector = styled.button`
