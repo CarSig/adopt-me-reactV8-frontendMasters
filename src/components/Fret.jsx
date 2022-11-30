@@ -4,64 +4,7 @@ import { useChordInterval } from '../hooks/useChordInterval';
 import { MusicContext } from '../Context/MusicContext'
 import { getIntervalColor } from '../functions/getIntervalColor';
 import { playChord } from '../functions/playNotes';
-
-import styled from 'styled-components';
-
-const StyledFret = styled.button`
-    position:relative;
-    width:5rem;
-    background-color: #333;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    border-right: 1px solid white;
-    border-left: 1px solid white;
-    border-top: none;
-    border-bottom: none;
-    z-index:0;
- 
-    :after{
-        top:50%; 
-         border-top:1px solid white; 
-        
-        left: 0;
-        top: 50%;
-        height: 1px;
-        /* background: white; */
-        content: "";
-        width: 100%;
-        position: absolute;
-        display: block;
-    z-index:-2;
-            
-        } 
-       
-
-
-    .note {
-        
-      
-        
-    }
-
-  
-`
-const StyledNote = styled.div`
-  color: black;
-        border: none;
-        z-index:5;
-        background-color: #333;
-/**extra */
-        position: absolute; 
-    top:25%;
-    left:25%;
-    z-index:-12;
-    .note-selected {
-        border: 1px solid white;
-    }
-    `
-
-/* width: ${props => props.fret.fretWidth * 3.4}rem; */
+import { StyledFret, StyledNote } from './styles/Fret.style'
 
 
 
@@ -95,23 +38,18 @@ const Fret = ({ fret, octave, stringNumber }) => {
 
 
     const colors = getIntervalColor(interval)
-    const formatedNote = accidental === "sharp" ? fret.fretNote?.slice(0, 2) : fret.fretNote?.slice(3, 5)
+    const formattedNote = accidental === "sharp" ? fret.fretNote?.slice(0, 2) : fret.fretNote?.slice(3, 5)
 
 
     return (
 
-
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-
-        <StyledFret>
-            {
-                //note-selected daje bijeli border
-            }
+        <StyledFret stringNumber={stringNumber} onClick={handleClick}>
 
             <StyledNote className={`note ${selectorNote === fret.fretNote ? "note-selected" : null}`} style={{ backgroundColor: selected && colors, color: selected ? "#eee" : "#555", "zIndex": -1 }}>
-                {fret?.fretNote?.length < 2 ? fret.fretNote : formatedNote}
-                {octave}
-
+                {fret?.fretNote?.length < 2 ? fret.fretNote : formattedNote}
+                {
+                    // octave
+                }
 
             </StyledNote>
         </StyledFret>

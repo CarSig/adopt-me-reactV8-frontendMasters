@@ -1,7 +1,5 @@
 import { useState } from "react"
 
-
-
 export const usePlayNote = ({ stringNumber, fret }) => {
     const [playNote, setPlayNote] = useState([null, null, null, null, null, null])
 

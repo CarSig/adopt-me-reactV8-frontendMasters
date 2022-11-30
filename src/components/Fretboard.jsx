@@ -32,10 +32,6 @@ const Fretboard = () => {
     return (
         <div className='fretboard'>
 
-            {
-
-                // <ColorTest />
-            }
 
 
 
@@ -43,17 +39,8 @@ const Fretboard = () => {
             <button style={{ backgroundColor: primaryColor }} onClick={() => { playChord(playNotes, 6, delay) }}>play lower octave </button>
             <button style={{ backgroundColor: secondaryColor }} onClick={() => { playChord(playNotes.map(note => note + 12), 6, delay) }}>play higher octave </button>
             <Slider delay={delay} setDelay={setDelay} />
-            {
-                //            <h2>{selectorNote} {selectorChord} in {selectorShape} shape </h2>
-                // <h2>chord:{chord.name} ---- {chord.notes}</h2>
-                // <h2>scale:{scale.name} ---- {scale.notes}</h2>
-                // <h2>shape:{JSON.stringify(shape.frets)} ---- chord {selectorNote} {selectorChord} in {selectorShape} shape --- {chord.notes}</h2>
 
-
-            }
-
-
-            <div className="fretNumbers" style={{ display: "flex", justifyContent: "space-around" }}>
+            <div className="fretNumbers" style={{ display: "flex", justifyContent: "space-between", marginLeft: "4%", marginRight: "1%" }}>
                 {mapFretNumbers()}
             </div>
 
