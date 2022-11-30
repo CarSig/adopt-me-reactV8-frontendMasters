@@ -1,11 +1,68 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useState, useContext, useEffect } from 'react'
-import useSound from 'use-sound'
+import React, { useState, useContext } from 'react'
 import { useChordInterval } from '../hooks/useChordInterval';
 import { MusicContext } from '../Context/MusicContext'
 import { getIntervalColor } from '../functions/getIntervalColor';
 import { playChord } from '../functions/playNotes';
-import { usePlayNote } from '../hooks/usePlayNote';
+
+import styled from 'styled-components';
+
+const StyledFret = styled.button`
+    position:relative;
+    width:5rem;
+    background-color: #333;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+    border-top: none;
+    border-bottom: none;
+    z-index:0;
+ 
+    :after{
+        top:50%; 
+         border-top:1px solid white; 
+        
+        left: 0;
+        top: 50%;
+        height: 1px;
+        /* background: white; */
+        content: "";
+        width: 100%;
+        position: absolute;
+        display: block;
+    z-index:-2;
+            
+        } 
+       
+
+
+    .note {
+        
+      
+        
+    }
+
+  
+`
+const StyledNote = styled.div`
+  color: black;
+        border: none;
+        z-index:5;
+        background-color: #333;
+/**extra */
+        position: absolute; 
+    top:25%;
+    left:25%;
+    z-index:-12;
+    .note-selected {
+        border: 1px solid white;
+    }
+    `
+
+/* width: ${props => props.fret.fretWidth * 3.4}rem; */
+
 
 
 
@@ -35,19 +92,7 @@ const Fret = ({ fret, octave, stringNumber }) => {
     }
 
 
-    const styles = {
-        fret: {
-            width: `${fret.fretWidth * 3.4}rem`,
-            fontWeight: "bold",
-            fontSize: "1rem",
-            cursor: "pointer",
-        },
-        note: {
-            color: "black",
-            border: "none",
-        },
 
-    }
 
     const colors = getIntervalColor(interval)
     const formatedNote = accidental === "sharp" ? fret.fretNote?.slice(0, 2) : fret.fretNote?.slice(3, 5)
@@ -58,16 +103,18 @@ const Fret = ({ fret, octave, stringNumber }) => {
 
         // eslint-disable-next-line jsx-a11y/click-events-have-key-events
 
-        <div onClick={handleClick} style={styles.fret} className="fret">
+        <StyledFret>
             {
                 //note-selected daje bijeli border
             }
-            <div className={`note ${selectorNote === fret.fretNote ? "note-selected" : null}`} style={{ backgroundColor: selected && colors, color: "white" }}>
+
+            <StyledNote className={`note ${selectorNote === fret.fretNote ? "note-selected" : null}`} style={{ backgroundColor: selected && colors, color: selected ? "#eee" : "#555", "zIndex": -1 }}>
                 {fret?.fretNote?.length < 2 ? fret.fretNote : formatedNote}
                 {octave}
 
-            </div>
-        </div>
+
+            </StyledNote>
+        </StyledFret>
 
 
     )
